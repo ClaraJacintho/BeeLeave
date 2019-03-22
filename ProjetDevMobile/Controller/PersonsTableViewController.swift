@@ -13,11 +13,21 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, PersonSetView
     //var presenter   : PersonPresenter
     var tableView   : UITableView
     var personsViewModel : PersonSetViewModel
+    let fetchResultController : PersonFetchResultController
     
     init(tableView: UITableView) {
+//        self.tableView        = tableView
+//        //self.presenter        = PersonPresenter()
+//        self.personsViewModel = PersonSetViewModel()
+//        super.init()
+//        self.tableView.dataSource      = self
+//        self.personsViewModel.delegate = self
         self.tableView        = tableView
         //self.presenter        = PersonPresenter()
-        self.personsViewModel = PersonSetViewModel()
+        self.fetchResultController = PersonFetchResultController(view : tableView)
+        self.personsViewModel = PersonSetViewModel(data: self.fetchResultController.personsFetched)
+//        self.personsViewModel = PersonSetViewModel(view : tableView)//, model : self.personsViewModel)
+//        self.fetchResultController = PersonFetchResultController(view : tableView, model : self.personsViewModel)
         super.init()
         self.tableView.dataSource      = self
         self.personsViewModel.delegate = self
@@ -47,25 +57,28 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, PersonSetView
     ///
     /// - Parameter indexPath: (section, row) of updating
     func personUpdated(at indexPath: IndexPath){
-        self.tableView.beginUpdates()
-        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-        self.tableView.endUpdates()
+//        self.tableView.beginUpdates()
+//        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+//        self.tableView.endUpdates()
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     /// called when a Person is added to set
     ///
     /// - Parameter indexPath: (section,row) of add
     func personAdded(at indexPath: IndexPath){
-        self.tableView.beginUpdates()
-        self.tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.middle)
-        self.tableView.endUpdates()
+//        self.tableView.beginUpdates()
+//        self.tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.middle)
+//        self.tableView.endUpdates()
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     /// called when a Person is deleted from set
     ///
     /// - Parameter indexPath: (section,row) of deletion
     func personDeleted(at indexPath: IndexPath) {
-        self.tableView.beginUpdates()
-        self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        self.tableView.endUpdates()
+//        self.tableView.beginUpdates()
+//        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+//        self.tableView.endUpdates()
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     //-------------------------------------------------------------------------------------------------
     // MARK: - convenience methods

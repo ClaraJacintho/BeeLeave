@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let clara = Person(firstName: "Clara", lastName: "Jacintho")
-        self.people?.add(person: clara)
-        let delton = Person(firstName: "Delton", lastName: "Vaz")
-        self.people?.add(person: delton)
+//        let clara = Person(firstName: "Clara", lastName: "Jacintho")
+//        self.people?.add(person: clara)
+//        let delton = Person(firstName: "Delton", lastName: "Vaz")
+//        self.people?.add(person: delton)
 
         return true
     }

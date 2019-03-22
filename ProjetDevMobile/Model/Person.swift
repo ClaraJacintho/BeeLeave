@@ -13,21 +13,21 @@ import Foundation
 extension Person{
     // MARK: -
     /// firstname of Person
-    public var firstname : String { return self.pfirstName ?? "" }
+    public var firstName : String { return self.pfirstName ?? "" }
     /// lastname of Person
-    public var lastname  : String { return self.plastName  ?? "" }
+    public var lastName  : String { return self.plastName  ?? "" }
     /// birth date property: `(Date|Empty)` a `Person` can have no birth date
-    public var birthdate : Date? {
+    public var birthDate : Date? {
         get{ return self.pbirthDate }
         set{ self.pbirthDate = newValue }
     }
     /// fullname property: `String` firstname lastname (read-only)
-    public var fullname: String {
-        return self.firstname + " " + self.lastname
+    public var fullName: String {
+        return self.firstName + " " + self.lastName
     }
     /// age property: (Int|Empty) - empty if no birthdate, else age in years
     var age : Int? {
-        guard let birth = self.birthdate else{
+        guard let birth = self.birthDate else{
             return nil
         }
         let today : Date = Date()
@@ -54,22 +54,25 @@ extension Person{
 //            }
 //        } }
     /// text description of person
-    override public var description : String {
-        var fullname =  self.firstname + " " + self.firstname
-        if let birthdate = self.pbirthDate{
-            fullname += " " + birthdate.description
-        }
-        return fullname
-    }
+    
+//    override public var description : String {
+//        var fullname =  self.firstname + " " + self.firstname
+//        if let birthdate = self.birthdate{
+//            fullname += " " + birthdate.description
+//        }
+//        return fullname
+//    }
+    
+    
     /// initialize a `Person`
     ///
     /// - Parameters:
     ///   - firstname: `String` first name of `Person`
     ///   - lastname:  `String` last name of `Person`
-    convenience init(firstname: String, lastname: String){
+    convenience init(firstName: String, lastName: String){
         self.init(context: CoreDataManager.context)
-        self.pfirstName = firstname
-        self.plastName  = lastname
+        self.pfirstName = firstName
+        self.plastName  = lastName
         self.pbirthDate = nil
     }
     /// initialize a `Person`
@@ -78,11 +81,11 @@ extension Person{
     ///   - firstname: `String` first name of `Person`
     ///   - lastname:  `String` last name of `Person`
     ///   - birthdate: `Date` birth date pf `Person`
-    convenience init(firstname: String, lastname: String, birthdate: Date){
+    convenience init(firstName: String, lastName: String, birthDate: Date){
         self.init(context: CoreDataManager.context)
-        self.pfirstName = firstname
-        self.plastName  = lastname
-        self.pbirthDate = birthdate
+        self.pfirstName = firstName
+        self.plastName  = lastName
+        self.pbirthDate = birthDate
     }
     /// initialize a `Person`
     ///
@@ -90,11 +93,11 @@ extension Person{
     ///   - firstname: `String` first name of `Person`
     ///   - lastname:  `String` last name of `Person`
     ///   - birthdate: `Date` birth date pf `Person`
-    convenience init(firstname: String, lastname: String, birthdate: Date, city: String?, country: String?){
+    convenience init(firstName: String, lastName: String, birthDate: Date, city: String?, country: String?){
         self.init(context: CoreDataManager.context)
-        self.pfirstName = firstname
-        self.plastName  = lastname
-        self.pbirthdate = birthdate
+        self.pfirstName = firstName
+        self.plastName  = lastName
+        self.pbirthDate = birthDate
 //        if (city==nil) && (country==nil){
 //            self.inhabit = nil
 //        } else{
