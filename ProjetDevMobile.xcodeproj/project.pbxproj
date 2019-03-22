@@ -15,6 +15,14 @@
 		DCAB7B042242372600845413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB7B022242372600845413 /* LaunchScreen.storyboard */; };
 		DCAB7B0F2242372600845413 /* ProjetDevMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B0E2242372600845413 /* ProjetDevMobileTests.swift */; };
 		DCAB7B1A2242372600845413 /* ProjetDevMobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B192242372600845413 /* ProjetDevMobileUITests.swift */; };
+		DCAB7B292242391100845413 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B282242391100845413 /* Person.swift */; };
+		DCAB7B2B2242392D00845413 /* PersonSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B2A2242392D00845413 /* PersonSet.swift */; };
+		DCAB7B2E22423C4200845413 /* PersonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B2D22423C4200845413 /* PersonsTableViewController.swift */; };
+		DCAB7B3222423DF400845413 /* PersonSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B3122423DF400845413 /* PersonSetViewModel.swift */; };
+		DCAB7B352242430E00845413 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B342242430E00845413 /* PersonPresenter.swift */; };
+		DCAB7B3722424D3000845413 /* NewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7B3622424D3000845413 /* NewPersonViewController.swift */; };
+		DCCAC58B2244DF8E0068A2A1 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAC58A2244DF8E0068A2A1 /* PersonDetailViewController.swift */; };
+		DCCAC58D22451B670068A2A1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCAC58C22451B670068A2A1 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		DCAB7B152242372600845413 /* ProjetDevMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjetDevMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB7B192242372600845413 /* ProjetDevMobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjetDevMobileUITests.swift; sourceTree = "<group>"; };
 		DCAB7B1B2242372600845413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCAB7B282242391100845413 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		DCAB7B2A2242392D00845413 /* PersonSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSet.swift; sourceTree = "<group>"; };
+		DCAB7B2D22423C4200845413 /* PersonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonsTableViewController.swift; sourceTree = "<group>"; };
+		DCAB7B3122423DF400845413 /* PersonSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSetViewModel.swift; sourceTree = "<group>"; };
+		DCAB7B342242430E00845413 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
+		DCAB7B3622424D3000845413 /* NewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonViewController.swift; sourceTree = "<group>"; };
+		DCCAC58A2244DF8E0068A2A1 /* PersonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
+		DCCAC58C22451B670068A2A1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +115,8 @@
 		DCAB7AF52242372300845413 /* ProjetDevMobile */ = {
 			isa = PBXGroup;
 			children = (
+				DCAB7B2C22423A4D00845413 /* Controller */,
+				DCAB7B27224238F600845413 /* Model */,
 				DCAB7AF62242372300845413 /* AppDelegate.swift */,
 				DCAB7AF82242372300845413 /* ViewController.swift */,
 				DCAB7AFA2242372300845413 /* Main.storyboard */,
@@ -126,6 +144,44 @@
 				DCAB7B1B2242372600845413 /* Info.plist */,
 			);
 			path = ProjetDevMobileUITests;
+			sourceTree = "<group>";
+		};
+		DCAB7B27224238F600845413 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCAB7B3022423DA300845413 /* ViewModel */,
+				DCAB7B282242391100845413 /* Person.swift */,
+				DCAB7B2A2242392D00845413 /* PersonSet.swift */,
+				DCCAC58C22451B670068A2A1 /* CoreDataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DCAB7B2C22423A4D00845413 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DCAB7B33224242DD00845413 /* Presenter */,
+				DCAB7B2D22423C4200845413 /* PersonsTableViewController.swift */,
+				DCAB7B3622424D3000845413 /* NewPersonViewController.swift */,
+				DCCAC58A2244DF8E0068A2A1 /* PersonDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DCAB7B3022423DA300845413 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DCAB7B3122423DF400845413 /* PersonSetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DCAB7B33224242DD00845413 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DCAB7B342242430E00845413 /* PersonPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,9 +315,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCAB7B3722424D3000845413 /* NewPersonViewController.swift in Sources */,
+				DCAB7B2B2242392D00845413 /* PersonSet.swift in Sources */,
+				DCAB7B3222423DF400845413 /* PersonSetViewModel.swift in Sources */,
 				DCAB7AF92242372300845413 /* ViewController.swift in Sources */,
+				DCAB7B2E22423C4200845413 /* PersonsTableViewController.swift in Sources */,
 				DCAB7AFF2242372300845413 /* ProjetDevMobile.xcdatamodeld in Sources */,
+				DCAB7B292242391100845413 /* Person.swift in Sources */,
 				DCAB7AF72242372300845413 /* AppDelegate.swift in Sources */,
+				DCCAC58B2244DF8E0068A2A1 /* PersonDetailViewController.swift in Sources */,
+				DCAB7B352242430E00845413 /* PersonPresenter.swift in Sources */,
+				DCCAC58D22451B670068A2A1 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
