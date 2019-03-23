@@ -43,7 +43,15 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, PersonSetView
         return self.personsViewModel.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentTripId", for: indexPath)
+        
+//        guard let cell : TripItemTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "CurrentTripId") as? TripItemTableViewCell else {
+//            //os_log("error", log: .default, type: .debug)
+//            fatalError()
+//        }
+//        cell.cityName?.text = "Exemplos"
+//        cell.nbParticipants?.text = "10"
+        
         // Configure the cell...
         return configure(cell: cell, atIndexPath: indexPath)
     }
