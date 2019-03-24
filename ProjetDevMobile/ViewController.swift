@@ -13,14 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentTripTV: UITableView!
     @IBOutlet weak var tableView: UITableView!
     var tableViewController: PersonsTableViewController!
-   
+    var tripsTableViewController : TripTableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "TripItemCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "tripItemCell")
+     //   tableView.register(nib, forCellReuseIdentifier: "tripItemCell")
+        currentTripTV.register(nib, forCellReuseIdentifier: "tripItemCell")
         
+       
+        self.tripsTableViewController = TripTableViewController(tableView: self.currentTripTV)
         self.tableViewController = PersonsTableViewController(tableView: self.tableView)
+        
     }
 
     override func didReceiveMemoryWarning() {

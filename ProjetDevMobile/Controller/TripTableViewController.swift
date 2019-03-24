@@ -8,39 +8,68 @@
 
 import UIKit
 
-class TripTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+class TripTableViewController: NSObject, UITableViewDataSource, TripViewModelDelegate  {
+    func dataSetChanged() {
+         self.tableView.reloadData()
     }
+    
+    func tripDeleted(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func tripUpdated(at indexPath: IndexPath) {
+         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func tripAdded(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
 
-    // MARK: - Table view data source
+    var tableView   : UITableView
+    var tripViewModel : TripsViewModel
+    let fetchResultController : TripFetchResultController
+    
+    init(tableView: UITableView) {
+        
+        self.tableView        = tableView
+       
+        self.fetchResultController = TripFetchResultController(view : tableView)
+        
+        self.tripViewModel = TripsViewModel(data: self.fetchResultController.tripsFetched)
+       
+        super.init()
+        
+        
+        self.tableView.dataSource      = self
+       
+        self.tripViewModel.delegate = self
+        
+        
+    }
+    
+   
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("ahoy")
+   
+         guard let cell : TripItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else {
+            print("Cell is not Current Trip Cell")
+            fatalError()
+        }
+         return configure(cell: cell, atIndexPath: indexPath)
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,5 +115,18 @@ class TripTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //-------------------------------------------------------------------------------------------------
+    // MARK: - convenience methods
+    @discardableResult
+    private func configure(cell: TripItemTableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
+        //guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
+        //cell.textLabel?.text = self.presenter.text(ofPerson: person)
+        cell.cityName?.text = "Paris"
+        cell.startsDate?.text = "23/12/2019"
+        cell.endsDate?.text = "01/01/2020"
+        cell.nbParticipants?.text = "5"
+        return cell
+    }
 
 }
