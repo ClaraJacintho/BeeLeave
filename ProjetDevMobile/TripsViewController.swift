@@ -11,7 +11,6 @@ import UIKit
 class TripsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var dummyController : DummyController!
     var tripController : TripTableViewController!
     
     override func viewDidLoad() {
@@ -38,6 +37,7 @@ class TripsViewController: UIViewController {
                     return
                 }
                     destController.trip = self.tripController.tripViewModel.get(tripAt: indexPath.row)
+                
                 }
         }
         

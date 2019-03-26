@@ -10,21 +10,18 @@ import UIKit
 
 class TripDetailViewController: UIViewController {
     @IBOutlet weak var ttitle: UILabel!
-    
     @IBOutlet weak var sdate: UILabel!
     @IBOutlet weak var edate: UILabel!
-    //    @IBOutlet weak var firstnameLabel: UILabel!
-//    @IBOutlet weak var lastnameLabel: UILabel!
-//    @IBOutlet weak var birthdateLabel: UILabel!
+   
     
-    //@IBOutlet var presenter: PersonPresenter!
-    //    @IBOutlet var presenter: PersonPresenter!
-   // var person : Person?
+    @IBOutlet weak var personTable: UITableView!
+    var personController : PersonsTableViewController!
+   
     var trip : Trip?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("tripdetailviewController")
         // Do any additional setup after loading the view.
+        self.personController = PersonsTableViewController(tableView: personTable)
         if let atrip = self.trip{
             self.ttitle.text = atrip.ttitle
             let formatter = DateFormatter()
@@ -41,6 +38,13 @@ class TripDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
+        if let newPersonController = sender.source as? NewPersonViewController {
+            if let newPerson : Person = newPersonController.newPerson {
+                self.personController.personsViewModel.add(person: newPerson)
+            }
+        }
+    }
     
     /*
      // MARK: - Navigation
@@ -51,5 +55,30 @@ class TripDetailViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
+        if let newPersonController = sender.source as? NewPersonViewController {
+            if let person : Person = newPersonController.newPerson {
+                self.personController.personsViewModel.add(person: person)
+                //TripsViewModel.updadateAddPerson(1,person)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if let destController = segue.destination as? NewPersonViewController {
+            destController.trip = self.trip
+        }
+        if let destController = segue.destination as? PersonDetailViewController {
+            if let cell = sender as? UITableViewCell{
+                guard let indexPath = self.personTable.indexPath(for: cell) else{
+                    return
+                }
+                    destController.person = self.personController.personsViewModel.get(personAt: indexPath.row)
+                }
+        }
+    }
     
 }

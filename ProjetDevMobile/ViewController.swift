@@ -14,8 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var tableViewController: PersonsTableViewController!
 //    var tripsTableViewController : TripTableViewController!
-    var tripsTableViewController : DummyController!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //let nib = UINib(nibName: "TripItemCell", bundle: nil)
@@ -25,7 +24,7 @@ class ViewController: UIViewController {
         
         //self.currentTripTV.rowHeight = 175; //The CELL in all its glory
     
-        self.tripsTableViewController = DummyController(self.currentTripTV)  //TripTableViewController(tableView: self.currentTripTV)
+    //TripTableViewController(tableView: self.currentTripTV)
 //        self.tableViewController = PersonsTableViewController(tableView: self.tableView)
         
     }
@@ -33,21 +32,6 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    //
-    @IBAction func addAction(_ sender: Any) {
-        let cf: Person
-        let df = DateFormatter()
-        df.dateFormat = "dd-mm-yyyy"
-        if let bdate = df.date(from: "01-06-1988"){
-            cf = Person(firstName: "Christophe", lastName: "Fiorio")
-        }
-        else{
-            cf = Person(firstName: "Christophe", lastName: "Fiorio")
-        }
-        self.tableViewController.personsViewModel.add(person: cf)
-        //self.tableView.reloadData()
     }
     
     @IBAction func updateAction(_ sender: Any) {

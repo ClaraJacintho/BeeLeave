@@ -9,30 +9,29 @@
 import UIKit
 
 class PersonDetailViewController: UIViewController {
-    
-    @IBOutlet weak var firstnameLabel: UILabel!
-    @IBOutlet weak var lastnameLabel: UILabel!
-    @IBOutlet weak var birthdateLabel: UILabel!
-    
+
     //@IBOutlet var presenter: PersonPresenter!
     //    @IBOutlet var presenter: PersonPresenter!
     var person : Person?
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var arrivalDateLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let aperson = self.person{
-            self.lastnameLabel.text = aperson.lastName
-            self.firstnameLabel.text = aperson.firstName
-            self.birthdateLabel.text = String(aperson.age ?? 0)
-            
+  
+            self.nameLabel.text = aperson.fullName
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            self.arrivalDateLabel.text = formatter.string(from: aperson.arrivalDate!)
             //self.lastnameLabel.resize
             //self.presenter.birthDate(ofPerson: aperson)
             
         } else{
-            self.lastnameLabel.text = ""
-            self.firstnameLabel.text = ""
-            self.birthdateLabel.text = ""
+            self.nameLabel.text = ""
+            self.arrivalDateLabel.text = ""
            
         }
     }

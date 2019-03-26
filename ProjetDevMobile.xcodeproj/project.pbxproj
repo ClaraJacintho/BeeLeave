@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC30C313224A47700012EE57 /* DummyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC30C312224A47700012EE57 /* DummyController.swift */; };
 		DC558942224A4BB200F20540 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC558941224A4BB200F20540 /* TripsViewController.swift */; };
 		DCAB7AF72242372300845413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF62242372300845413 /* AppDelegate.swift */; };
 		DCAB7AF92242372300845413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF82242372300845413 /* ViewController.swift */; };
@@ -53,7 +52,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC30C312224A47700012EE57 /* DummyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyController.swift; sourceTree = "<group>"; };
 		DC558941224A4BB200F20540 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		DCAB7AF32242372300845413 /* ProjetDevMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetDevMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB7AF62242372300845413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,14 +182,13 @@
 		DCAB7B2C22423A4D00845413 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DCAB7B33224242DD00845413 /* Presenter */,
 				DCAB7B2D22423C4200845413 /* PersonsTableViewController.swift */,
 				DCCAC5972245C0330068A2A1 /* TripTableViewController.swift */,
-				DC30C312224A47700012EE57 /* DummyController.swift */,
 				DCAB7B3622424D3000845413 /* NewPersonViewController.swift */,
 				DCCAC59F224842F90068A2A1 /* NewTripViewController.swift */,
 				DCCAC5A1224864B00068A2A1 /* TripDetailViewController.swift */,
 				DCCAC58A2244DF8E0068A2A1 /* PersonDetailViewController.swift */,
+				DCAB7B33224242DD00845413 /* Presenter */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,7 +366,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC30C313224A47700012EE57 /* DummyController.swift in Sources */,
 				DCCAC59A224709590068A2A1 /* Trip.swift in Sources */,
 				DCAB7B3722424D3000845413 /* NewPersonViewController.swift in Sources */,
 				DCCAC5A0224842F90068A2A1 /* NewTripViewController.swift in Sources */,
