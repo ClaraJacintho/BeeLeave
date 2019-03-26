@@ -13,17 +13,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentTripTV: UITableView!
     @IBOutlet weak var tableView: UITableView!
     var tableViewController: PersonsTableViewController!
-    var tripsTableViewController : TripTableViewController!
-    
+//    var tripsTableViewController : TripTableViewController!
+    var tripsTableViewController : DummyController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "TripItemCell", bundle: nil)
-     //   tableView.register(nib, forCellReuseIdentifier: "tripItemCell")
-        currentTripTV.register(nib, forCellReuseIdentifier: "tripItemCell")
+        //let nib = UINib(nibName: "TripItemCell", bundle: nil)
         
-       
-        self.tripsTableViewController = TripTableViewController(tableView: self.currentTripTV)
-        self.tableViewController = PersonsTableViewController(tableView: self.tableView)
+     //   tableView.register(nib, forCellReuseIdentifier: "tripItemCell")
+        //currentTripTV.register(nib, forCellReuseIdentifier: "tripItemCell")
+        
+        //self.currentTripTV.rowHeight = 175; //The CELL in all its glory
+    
+        self.tripsTableViewController = DummyController(self.currentTripTV)  //TripTableViewController(tableView: self.currentTripTV)
+//        self.tableViewController = PersonsTableViewController(tableView: self.tableView)
         
     }
 
@@ -62,24 +65,42 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let destController = segue.destination as? PersonDetailViewController {
-            if let cell = sender as? UITableViewCell{
-                guard let indexPath = self.tableView.indexPath(for: cell) else{
-                    return
-                }
-                destController.person = self.tableViewController.personsViewModel.get(personAt: indexPath.row)
-            }
-        }
+        print(":)")
+//        if let destController = segue.destination as? TripDetailViewController {
+//            if let cell = sender as? TripItemTableViewCell{
+//                guard let indexPath = self.currentTripTV.indexPath(for: cell) else{
+//                    print(":(")
+//                    return
+//                }
+//                destController.trip = self.tripsTableViewController.tripViewModel.get(tripAt: indexPath.row)
+//            }
+//        }
+//        if let destController = segue.destination as? PersonDetailViewController {
+//            if let cell = sender as? UITableViewCell{
+//                guard let indexPath = self.tableView.indexPath(for: cell) else{
+//                    return
+//                }
+//                destController.person = self.tableViewController.personsViewModel.get(personAt: indexPath.row)
+//            }
+//        }
     }
-    
+
+
     // segue ViewControllerB -> ViewController
     @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
-        if let newPersonController = sender.source as? NewPersonViewController {
-            //dataRecieved = sourceViewController.dataPassed
-            if let person = newPersonController.newPerson{
-                //
-                self.tableViewController.personsViewModel.add(person: person)
-            } }
+//        if let newPersonController = sender.source as? NewPersonViewController {
+//            //dataRecieved = sourceViewController.dataPassed
+//            if let person = newPersonController.newPerson{
+//                //
+//                self.tableViewController.personsViewModel.add(person: person)
+//            } }
+//
+        
+        if let newTripController = sender.source as? NewTripViewController {
+            if let newTrip : Trip = newTripController.newTrip {
+//                self.tripsTableViewController.tripViewModel.add(trip: newTrip)
+            }
+        }
     }
 
 

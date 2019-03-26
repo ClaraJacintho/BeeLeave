@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TripTableViewController: NSObject, UITableViewDataSource, TripViewModelDelegate  {
+class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, TripViewModelDelegate  {
     func dataSetChanged() {
          self.tableView.reloadData()
     }
@@ -32,43 +32,52 @@ class TripTableViewController: NSObject, UITableViewDataSource, TripViewModelDel
     
     init(tableView: UITableView) {
         
-        self.tableView        = tableView
-       
+        self.tableView  = tableView
         self.fetchResultController = TripFetchResultController(view : tableView)
-        
         self.tripViewModel = TripsViewModel(data: self.fetchResultController.tripsFetched)
-       
         super.init()
         
-        
-        self.tableView.dataSource      = self
-       
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tripViewModel.delegate = self
         
         
     }
     
    
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 214.5
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("ahoy")
-   
-         guard let cell : TripItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else {
-            print("Cell is not Current Trip Cell")
-            fatalError()
-        }
-         return configure(cell: cell, atIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return self.tripViewModel.count
     }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else { fatalError() }
+//        cell.textLabel?.text = ""
+        guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
+//        cell.textLabel?.text = trip.ttitle
+        cell.cityName?.text = trip.ttitle
+        return cell
+    }
+    
+//    func ttableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        print("hello")
+//         guard let cell : TripItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else {
+//            print("Cell is not Current Trip Cell")
+//            fatalError()
+//        }
+//         return configure(cell: cell, atIndexPath: indexPath)
+//    }
+    
+    
+    
+    
  
 
     /*
@@ -120,13 +129,21 @@ class TripTableViewController: NSObject, UITableViewDataSource, TripViewModelDel
     // MARK: - convenience methods
     @discardableResult
     private func configure(cell: TripItemTableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
-        //guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
-        //cell.textLabel?.text = self.presenter.text(ofPerson: person)
-        cell.cityName?.text = "Paris"
-        cell.startsDate?.text = "23/12/2019"
-        cell.endsDate?.text = "01/01/2020"
-        cell.nbParticipants?.text = "5"
+//        guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
+            cell.cityName?.text = "hello"
+        //        cell.cityName?.text = trip.ttitle
+//        cell.startsDate?.text = dateFormatter.string(from: trip.tstart!)
+//        cell.endsDate?.text = dateFormatter.string(from: trip.tend!)
+//        cell.nbParticipants?.text = "5"
         return cell
     }
+    
+    lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
 
 }
