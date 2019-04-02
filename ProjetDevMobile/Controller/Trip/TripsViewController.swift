@@ -36,8 +36,8 @@ class TripsViewController: UIViewController {
                     print(":(")
                     return
                 }
+                    //Coloca variável trip em TripDetailViewController
                     destController.trip = self.tripController.tripViewModel.get(tripAt: indexPath.row)
-                
                 }
         }
         

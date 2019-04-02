@@ -15,25 +15,31 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastnameTextField: UITextField!
 
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var arrivalDate: UIDatePicker!
     var newPerson : Person?
     var trip: Trip?
+    var personTrip : PersonTrip?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print(self.trip?.ttitle)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
         if segue.identifier == "okNewPerson" {
             let firstname : String  = self.firstnameTextField.text!
             let lastname  : String  = self.lastnameTextField.text!
             let arrivalDate : Date    = self.arrivalDate.date
-            self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate, trip: self.trip!)
+            let newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)//, trip: self.trip!)
+            newPerson.didSave()
+            self.newPerson = newPerson
+            
+            self.personTrip = PersonTrip(person: newPerson, trip: self.trip!)
         }
         else{
             self.newPerson = nil

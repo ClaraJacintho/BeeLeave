@@ -17,6 +17,7 @@ class PersonDetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var arrivalDateLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,7 +26,10 @@ class PersonDetailViewController: UIViewController {
             self.nameLabel.text = aperson.fullName
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
-            self.arrivalDateLabel.text = formatter.string(from: aperson.arrivalDate!)
+            
+            self.arrivalDateLabel.text = formatter.string(from: aperson.arrivalDate ?? Date())
+            
+            
             //self.lastnameLabel.resize
             //self.presenter.birthDate(ofPerson: aperson)
             

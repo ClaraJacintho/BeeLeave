@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
-class NewTripViewController: UIViewController, UITextFieldDelegate {
+class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
  
 
     @IBOutlet weak var tripTitle: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var imagePicker = UIImagePickerController()
     
     var newTrip : Trip?
     
@@ -23,8 +26,9 @@ class NewTripViewController: UIViewController, UITextFieldDelegate {
         startDate.inputView = startPicker
         endDate.inputView = endPicker
         // Do any additional setup after loading the view.
+        
     }
-    
+        
     lazy var startPicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
@@ -62,7 +66,7 @@ class NewTripViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "okNewTripSegue" {
             
             let title : String = self.tripTitle.text!
-            print(self.startDate.text)
+            //print(self.startDate.text)
             guard let start : Date = dateFormatter.date(from: (self.startDate.text) ?? "11/23/1963") else {
                 fatalError() //how to just like, alert the person to fill the date?
             }
@@ -70,7 +74,13 @@ class NewTripViewController: UIViewController, UITextFieldDelegate {
                 fatalError()
             }
             
-            self.newTrip = Trip(title: title, start: start, end: end)
+            
+            guard let imgData = self.imageView.image?.jpegData(compressionQuality: 1) else {
+                print("jpg error")
+                return
+            }
+                       
+            self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
         }
         else{
             self.newTrip = nil
@@ -92,4 +102,38 @@ class NewTripViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    @IBAction func imageClicked(_ sender: Any) {
+        print("Cliquei!")
+//        imagePickerController = UIImagePickerController()
+//        imagePickerController.delegate = self
+//        imagePickerController.sourceType = .camera
+//        present(imagePickerController, animated: true, completion: nil)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            print("Button capture")
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.imageView.contentMode = .scaleAspectFit
+            self.imageView.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    
+//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        imagePickerController.dismiss(animated: true, completion: nil)
+//        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+//    }
+//    
 }

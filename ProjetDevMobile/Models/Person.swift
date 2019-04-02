@@ -32,12 +32,12 @@ extension Person{
         get{ return self.pdepartureDate }
         set{ self.pdepartureDate = newValue }
     }
-    
-    public var trip : Trip?{
-        get{ return self.onTrip }
-        set{ self.onTrip = newValue }
-    }
-    
+//
+//    public var trip : Trip?{
+//        get{ return self.onTrip }
+//        set{ self.onTrip = newValue }
+//    }
+//
     /// fullname property: `String` firstname lastname (read-only)
     public var fullName: String {
         return self.firstName + " " + self.lastName
@@ -57,13 +57,13 @@ extension Person{
     ///   - firstname: `String` first name of `Person`
     ///   - lastname:  `String` last name of `Person`
     ///   - birthdate: `Date` birth date pf `Person`
-    convenience init(firstName: String, lastName: String, arrivalDate: Date, trip : Trip){
+    convenience init(firstName: String, lastName: String, arrivalDate: Date){
         self.init(context: CoreDataManager.context)
         self.pfirstName = firstName
         self.plastName  = lastName
-        self.pbirthDate = nil
+        //self.pbirthDate = nil
         self.arrivalDate = arrivalDate
-        self.trip = trip
+        //self.trip = trip
     }
-    
+
 }

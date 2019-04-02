@@ -38,7 +38,8 @@ class ViewController: UIViewController {
         guard let index = self.tableView.indexPathForSelectedRow else{
             return
         }
-        self.tableViewController.personsViewModel.updateBirthDate(atIndexPath: index, withDate: Date())
+        
+//        self.tableViewController.personsViewModel.updateBirthDate(atIndexPath: index, withDate: Date())
     }
     
     

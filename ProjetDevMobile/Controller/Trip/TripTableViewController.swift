@@ -8,24 +8,7 @@
 
 import UIKit
 
-class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, TripViewModelDelegate  {
-    func dataSetChanged() {
-         self.tableView.reloadData()
-    }
-    
-    func tripDeleted(at indexPath: IndexPath) {
-        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
-    }
-    
-    func tripUpdated(at indexPath: IndexPath) {
-         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
-    }
-    
-    func tripAdded(at indexPath: IndexPath) {
-        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
-    }
-    
-
+class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, TripViewModelDelegate {
     var tableView   : UITableView
     var tripViewModel : TripsViewModel
     let fetchResultController : TripFetchResultController
@@ -43,6 +26,25 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         
         
     }
+    
+    func dataSetChanged() {
+         self.tableView.reloadData()
+    }
+    
+    func tripDeleted(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func tripUpdated(at indexPath: IndexPath) {
+         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func tripAdded(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+
+
     
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
@@ -63,6 +65,16 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
 //        cell.textLabel?.text = trip.ttitle
         cell.cityName?.text = trip.ttitle
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        cell.startsDate?.text = formatter.string(from: trip.tripStart)
+        cell.endsDate?.text = formatter.string(from: trip.tripEnd)
+        let image = UIImage(data: trip.tphoto!)
+        if image != nil {
+            cell.tripImage?.image = image
+        }
+        
         return cell
     }
     

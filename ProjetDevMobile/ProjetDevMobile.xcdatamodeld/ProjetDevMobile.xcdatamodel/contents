@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+        <attribute name="pcost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="paidBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasExpense" inverseEntity="PersonTrip" syncable="YES"/>
+    </entity>
     <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
         <attribute name="imagefilepath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -7,17 +11,25 @@
         <attribute name="pdepartureDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="pfirstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="plastName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="onTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="participants" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="tripR" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasPerson" inverseEntity="PersonTrip" syncable="YES"/>
+    </entity>
+    <entity name="PersonTrip" representedClassName="PersonTrip" syncable="YES" codeGenerationType="class">
+        <attribute name="pbalance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="hasExpense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="paidBy" inverseEntity="Expense" syncable="YES"/>
+        <relationship name="hasPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="tripR" inverseEntity="Person" syncable="YES"/>
+        <relationship name="hasTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="person" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES" codeGenerationType="class">
         <attribute name="tend" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tphoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="tstart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="ttitle" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="onTrip" inverseEntity="Person" syncable="YES"/>
+        <relationship name="person" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasTrip" inverseEntity="PersonTrip" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Person" positionX="-45" positionY="0" width="128" height="150"/>
-        <element name="Trip" positionX="130.0390625" positionY="-0.7265625" width="128" height="120"/>
+        <element name="Expense" positionX="222.43359375" positionY="-353.421875" width="128" height="73"/>
+        <element name="Person" positionX="-203.53125" positionY="-68.97265625" width="128" height="148"/>
+        <element name="PersonTrip" positionX="39.73828125" positionY="-228.9921875" width="128" height="103"/>
+        <element name="Trip" positionX="245.18359375" positionY="-40.140625" width="128" height="118"/>
     </elements>
 </model>

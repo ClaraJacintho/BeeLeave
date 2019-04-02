@@ -21,7 +21,10 @@ class TripDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.personController = PersonsTableViewController(tableView: personTable)
+        //Populate person list
+        self.personController = PersonsTableViewController(tableView: personTable, trip : self.trip!)
+        
+        
         if let atrip = self.trip{
             self.ttitle.text = atrip.ttitle
             let formatter = DateFormatter()
@@ -38,13 +41,6 @@ class TripDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindToThisView(sender: UIStoryboardSegue) {
-        if let newPersonController = sender.source as? NewPersonViewController {
-            if let newPerson : Person = newPersonController.newPerson {
-                self.personController.personsViewModel.add(person: newPerson)
-            }
-        }
-    }
     
     /*
      // MARK: - Navigation
@@ -55,29 +51,32 @@ class TripDetailViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
-    @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
-        if let newPersonController = sender.source as? NewPersonViewController {
-            if let person : Person = newPersonController.newPerson {
-                self.personController.personsViewModel.add(person: person)
-                //TripsViewModel.updadateAddPerson(1,person)
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destController = segue.destination as? NewPersonViewController {
             destController.trip = self.trip
+            print("Sabe que estou indo")
         }
+        
         if let destController = segue.destination as? PersonDetailViewController {
             if let cell = sender as? UITableViewCell{
                 guard let indexPath = self.personTable.indexPath(for: cell) else{
                     return
                 }
-                    destController.person = self.personController.personsViewModel.get(personAt: indexPath.row)
+                    destController.person = self.personController.personTripViewModel.get(personTripAt: indexPath.row)
                 }
+        }
+    }
+    
+    //Methodo que retorna de NewPersonViewController adicionando uma pessoa a viagem
+    @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
+        if let newPersonController = sender.source as? NewPersonViewController {
+            print("Volando1")
+            if let person : Person = newPersonController.newPerson {
+                print("Volando2")
+                self.personController.personTripViewModel.add(tripPerson: person)
+            }
         }
     }
     
