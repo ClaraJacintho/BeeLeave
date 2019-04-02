@@ -28,18 +28,12 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
         if segue.identifier == "okNewPerson" {
             let firstname : String  = self.firstnameTextField.text!
             let lastname  : String  = self.lastnameTextField.text!
             let arrivalDate : Date    = self.arrivalDate.date
-            let newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)//, trip: self.trip!)
-            newPerson.didSave()
-            self.newPerson = newPerson
-            
-            self.personTrip = PersonTrip(person: newPerson, trip: self.trip!)
+            self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)
+            self.personTrip = PersonTrip(person: self.newPerson!, trip: self.trip!)
         }
         else{
             self.newPerson = nil

@@ -12,6 +12,7 @@
 		DC6EE574224E7B17009172E2 /* PersonTripFetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6EE573224E7B17009172E2 /* PersonTripFetchResultController.swift */; };
 		DC6EE577224EC96C009172E2 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6EE576224EC96C009172E2 /* GalleryViewController.swift */; };
 		DC80A60322534EC100E79538 /* PersonTrip-CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80A60222534EC100E79538 /* PersonTrip-CoreData.swift */; };
+		DCA9E97F2253BC9300ABBAE3 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */; };
 		DCAB7AF72242372300845413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF62242372300845413 /* AppDelegate.swift */; };
 		DCAB7AF92242372300845413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF82242372300845413 /* ViewController.swift */; };
 		DCAB7AFC2242372300845413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB7AFA2242372300845413 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		DC6EE573224E7B17009172E2 /* PersonTripFetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTripFetchResultController.swift; sourceTree = "<group>"; };
 		DC6EE576224EC96C009172E2 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		DC80A60222534EC100E79538 /* PersonTrip-CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonTrip-CoreData.swift"; sourceTree = "<group>"; };
+		DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		DCAB7AF32242372300845413 /* ProjetDevMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetDevMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB7AF62242372300845413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAB7AF82242372300845413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		DCA9E97D2253BC6D00ABBAE3 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */,
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
 		DCAB7AEA2242372300845413 = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				DCAB7AF82242372300845413 /* ViewController.swift */,
+				DCA9E97D2253BC6D00ABBAE3 /* Expense */,
 				DC6EE575224EC93E009172E2 /* Gallery */,
 				DC6EE570224E1CE6009172E2 /* Person */,
 				DC6EE56F224E1CD0009172E2 /* Trip */,
@@ -410,6 +421,7 @@
 				DCAB7B3222423DF400845413 /* PersonSetViewModel.swift in Sources */,
 				DC6EE574224E7B17009172E2 /* PersonTripFetchResultController.swift in Sources */,
 				DCAB7AF92242372300845413 /* ViewController.swift in Sources */,
+				DCA9E97F2253BC9300ABBAE3 /* NewExpenseViewController.swift in Sources */,
 				DC558942224A4BB200F20540 /* TripsViewController.swift in Sources */,
 				DCAB7B2E22423C4200845413 /* PersonsTableViewController.swift in Sources */,
 				DCCAC59C22470F6C0068A2A1 /* TripFetchResultController.swift in Sources */,

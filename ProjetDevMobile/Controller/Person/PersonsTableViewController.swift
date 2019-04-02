@@ -47,6 +47,18 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
         
         //return configure(cell: cell, atIndexPath: indexPath)
     }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+            
+        }
+    }
+    
     //-------------------------------------------------------------------------------------------------
     // MARK: - PersonSetViewModelDelegate
     /// called when set globally changes

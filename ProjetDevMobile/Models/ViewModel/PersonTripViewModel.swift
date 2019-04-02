@@ -39,7 +39,6 @@ class PersonTripViewModel{
     }
     
     public func add(tripPerson: Person){
-        print("devia estar adicionando!")
         if let indexPath = self.personsFetched.indexPath(forObject: tripPerson){
             self.delegate?.personTripAdded(at: indexPath)
         }
@@ -51,6 +50,11 @@ class PersonTripViewModel{
     
     public func get(personTripAt index: Int) -> Person?{
         return self.personsFetched.object(at: IndexPath(row: index, section: 0))
+    }
+    
+    public func getAll() -> [Person]?{
+        return self.personsFetched.fetchedObjects
+        //return self.personsFetched.object(at: IndexPath(row: index, section: 0))
     }
 
 }

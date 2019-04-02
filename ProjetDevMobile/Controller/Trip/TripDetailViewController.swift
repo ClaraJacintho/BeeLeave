@@ -18,6 +18,9 @@ class TripDetailViewController: UIViewController {
     var personController : PersonsTableViewController!
    
     var trip : Trip?
+    var participants : [Person]?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,7 +34,8 @@ class TripDetailViewController: UIViewController {
             formatter.dateStyle = .medium
             self.sdate.text = formatter.string(from: atrip.tstart!)
             self.edate.text = formatter.string(from: atrip.tend!)
-       
+            
+            self.participants = self.personController.personTripViewModel.getAll()
             
         } else{
             self.ttitle.text = "Mistakes were made"
@@ -66,6 +70,10 @@ class TripDetailViewController: UIViewController {
                 }
                     destController.person = self.personController.personTripViewModel.get(personTripAt: indexPath.row)
                 }
+        }
+
+        if let destController = segue.destination as? NewExpenseViewController {
+            destController.personTable = self.personTable
         }
     }
     

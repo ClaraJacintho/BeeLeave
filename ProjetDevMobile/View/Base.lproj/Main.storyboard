@@ -207,20 +207,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-HP-98Q">
+                                <rect key="frame" x="16" y="256" width="138" height="30"/>
+                                <state key="normal" title="Add new expense"/>
+                                <connections>
+                                    <segue destination="iRU-MJ-Q61" kind="show" id="ugi-mn-QO2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5V9-kq-s6p" firstAttribute="trailing" secondItem="btd-y1-2vg" secondAttribute="trailing" constant="64" id="2bo-Lz-gr5"/>
                             <constraint firstItem="4gm-SM-X6G" firstAttribute="leading" secondItem="rFj-qO-FXv" secondAttribute="leading" id="AkM-V8-meT"/>
+                            <constraint firstItem="Ad2-HP-98Q" firstAttribute="leading" secondItem="5V9-kq-s6p" secondAttribute="leading" constant="16" id="BnC-6H-mdz"/>
                             <constraint firstItem="btd-y1-2vg" firstAttribute="top" secondItem="5V9-kq-s6p" secondAttribute="top" constant="24" id="Cus-8B-ue4"/>
+                            <constraint firstItem="VHJ-dI-ivl" firstAttribute="top" secondItem="Ad2-HP-98Q" secondAttribute="bottom" constant="39" id="GRA-bI-YNx"/>
                             <constraint firstItem="4gm-SM-X6G" firstAttribute="top" secondItem="rFj-qO-FXv" secondAttribute="bottom" constant="8" symbolic="YES" id="KAz-lV-BUT"/>
                             <constraint firstItem="4CL-zO-4qO" firstAttribute="top" secondItem="DJZ-pl-qKe" secondAttribute="bottom" constant="31" id="KTw-to-iP4"/>
                             <constraint firstItem="4CL-zO-4qO" firstAttribute="leading" secondItem="h7h-Gb-DHX" secondAttribute="leadingMargin" id="Rb5-sT-XMb"/>
+                            <constraint firstItem="5V9-kq-s6p" firstAttribute="trailing" secondItem="Ad2-HP-98Q" secondAttribute="trailing" constant="221" id="S6y-8t-sW9"/>
                             <constraint firstItem="VHJ-dI-ivl" firstAttribute="trailing" secondItem="h7h-Gb-DHX" secondAttribute="trailingMargin" id="Xul-HL-Xan"/>
                             <constraint firstItem="0Ce-LY-mii" firstAttribute="trailing" secondItem="DJZ-pl-qKe" secondAttribute="trailing" id="dZt-no-jDG"/>
                             <constraint firstItem="0Ce-LY-mii" firstAttribute="leading" secondItem="DJZ-pl-qKe" secondAttribute="leading" id="diZ-Xi-Dnb"/>
                             <constraint firstItem="btd-y1-2vg" firstAttribute="leading" secondItem="5V9-kq-s6p" secondAttribute="leading" constant="67" id="eU5-qz-qgu"/>
                             <constraint firstItem="DJZ-pl-qKe" firstAttribute="leading" secondItem="4gm-SM-X6G" secondAttribute="trailing" constant="17" id="fs5-73-nvT"/>
+                            <constraint firstItem="Ad2-HP-98Q" firstAttribute="top" secondItem="4CL-zO-4qO" secondAttribute="bottom" constant="8" id="g16-nV-MM2"/>
                             <constraint firstItem="VHJ-dI-ivl" firstAttribute="top" secondItem="4CL-zO-4qO" secondAttribute="bottom" constant="77" id="gQ5-0T-TJu"/>
                             <constraint firstItem="DJZ-pl-qKe" firstAttribute="top" secondItem="0Ce-LY-mii" secondAttribute="bottom" constant="10" id="hvM-RX-ZR6"/>
                             <constraint firstItem="5V9-kq-s6p" firstAttribute="bottom" secondItem="VHJ-dI-ivl" secondAttribute="bottom" constant="155" id="iGU-Pv-z4x"/>
@@ -242,6 +253,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hH6-OM-3bk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3319.1999999999998" y="-470.01499250374815"/>
+        </scene>
+        <!--New Expense View Controller-->
+        <scene sceneID="Uy1-Qn-bm0">
+            <objects>
+                <viewController id="iRU-MJ-Q61" customClass="NewExpenseViewController" customModule="ProjetDevMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ohj-XX-Y6F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1a-TS-yNF">
+                                <rect key="frame" x="16" y="103" width="343" height="350"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="h1a-TS-yNF" firstAttribute="trailing" secondItem="Ohj-XX-Y6F" secondAttribute="trailingMargin" id="NnG-Nr-gfN"/>
+                            <constraint firstItem="h1a-TS-yNF" firstAttribute="top" secondItem="JIe-9Z-Yzd" secondAttribute="top" constant="39" id="aj5-Rm-bME"/>
+                            <constraint firstItem="JIe-9Z-Yzd" firstAttribute="bottom" secondItem="h1a-TS-yNF" secondAttribute="bottom" constant="214" id="mDV-Ya-9Jx"/>
+                            <constraint firstItem="h1a-TS-yNF" firstAttribute="leading" secondItem="Ohj-XX-Y6F" secondAttribute="leadingMargin" id="nsI-2z-8li"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JIe-9Z-Yzd"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="h1a-TS-yNF" id="gdb-lI-b4K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBf-SF-yJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295.1999999999998" y="-1253.5232383808097"/>
         </scene>
         <!--Add person-->
         <scene sceneID="3HR-cv-SjU">
