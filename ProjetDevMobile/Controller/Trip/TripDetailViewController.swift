@@ -97,11 +97,11 @@ class TripDetailViewController: UIViewController {
             }
         }        
 
-//        if let newExpenseController = sender.source as? NewExpenseViewController {
-//            if let newExpense : Expense = newExpenseController.expense {
-//                self.expensesController.expenseViewModel.add(expense: newExpense)
-//            }
-//        }
+      // if let newExpenseController = sender.source as? NewExpenseViewController {
+      //      if let newExpense : Expense = newExpenseController.expense {
+      //          self.expensesController.expenseViewModel.add(expense: newExpense)
+      //      }
+      //  }
         
         
     }

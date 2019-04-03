@@ -44,5 +44,4 @@ class PersonTripDAO{
         let personTrip = trip.person
         return personTrip as! [PersonTrip]? ?? []
     }
-    
 }

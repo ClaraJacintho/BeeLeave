@@ -86,7 +86,7 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
             self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
             
             //TODO
-            self.newPersonTrip = PersonTrip(trip: self.newTrip!)
+            //self.newPersonTrip = PersonTrip(trip: self.newTrip!)
         }
         else{
             self.newTrip = nil

@@ -23,29 +23,32 @@ protocol TripViewModelDelegate {
 class TripsViewModel{
 
     var delegate : TripViewModelDelegate? = nil
-    var tripsFetched : NSFetchedResultsController<Trip>
+    var tripsFetched : NSFetchedResultsController<Trip>?
     
     init(data: NSFetchedResultsController<Trip>){
         self.tripsFetched = data
     }
+    
+    init(){
+    }
 
     public func add(trip: Trip){
-        if let indexPath = self.tripsFetched.indexPath(forObject: trip){
+        if let indexPath = self.tripsFetched!.indexPath(forObject: trip){
             self.delegate?.tripAdded(at: indexPath)
         }
     }
    
     public var count : Int{
-        return self.tripsFetched.fetchedObjects?.count ?? 0
+        return self.tripsFetched!.fetchedObjects?.count ?? 0
     }
     
     public func get(tripAt index: Int) -> Trip?{
-        return self.tripsFetched.object(at: IndexPath(row: index, section: 0))
+        return self.tripsFetched!.object(at: IndexPath(row: index, section: 0))
     }
     
     public func updadateAddPerson(atIndexPath indexPath: IndexPath, withPerson person: Person){
         //let person = self.personsFetched.object(at: indexPath)
-        let trip = self.tripsFetched.object(at: indexPath)
+        let trip = self.tripsFetched!.object(at: indexPath)
         //trip.participants?.adding(person)
         self.delegate?.tripUpdated(at: indexPath)
     }

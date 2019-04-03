@@ -11,6 +11,10 @@ import UIKit
 class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, TripViewModelDelegate {
     var tableView   : UITableView
     var tripViewModel : TripsViewModel
+    
+    //TODO
+    //var trips : PersonTripViewModel = PersonTripSetViewModel(personTripSet: PersonTripSet())
+    
     let fetchResultController : TripFetchResultController
     
     init(tableView: UITableView) {
@@ -18,6 +22,10 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView  = tableView
         self.fetchResultController = TripFetchResultController(view : tableView)
         self.tripViewModel = TripsViewModel(data: self.fetchResultController.tripsFetched)
+        
+        
+        //self.personTripViewModel = PersonTripViewModel(data: <#T##NSFetchedResultsController<Person>#>)
+        
         super.init()
         
         self.tableView.dataSource = self

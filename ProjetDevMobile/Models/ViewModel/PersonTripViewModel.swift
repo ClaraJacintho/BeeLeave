@@ -33,10 +33,17 @@ class PersonTripViewModel {
     var delegate : PersonTripViewModelDelegate? = nil
     var personsFetched : NSFetchedResultsController<Person>
     //var expensesFetched : NSFetchedResultsController<Expense>
+    var tripSet:[TripsViewModel] = []
     
     init(data: NSFetchedResultsController<Person>){
         self.personsFetched = data
     }
+    
+//    init(tripSet: PersonTripSet){
+//        for trip in tripSet.tripList{
+//            //self.tripSet.append(TripsViewModel.add(trip: trip))
+//        }
+//    }
     
     public func add(tripPerson: Person){
         if let indexPath = self.personsFetched.indexPath(forObject: tripPerson){

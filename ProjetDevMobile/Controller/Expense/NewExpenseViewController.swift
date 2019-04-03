@@ -54,15 +54,21 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
             
             
             let whoPaid : Person = self.personExpensesTable.personSelected!
+            
 
-            self.personTrip = PersonTrip.search(forPerson: whoPaid, trip: self.trip!)
+            let paidBy : PersonTrip = PersonTrip.search(forPerson: whoPaid, trip: self.trip!)
+            
+            
+            //self.personTrip =
             
             //self.personTrip?.addExpense(person: whoPaid, cost: cost)
-            //print(self.personTrip?.hasPerson?.firstName)
+            print(paidBy.hasTrip?.tripTitle)
+            print(paidBy.hasPerson?.fullName)
             
-            self.expense = Expense(paidBy: whoPaid, cost: cost, tripData: personTrip!)
+            self.expense = Expense(cost: cost, paidBy: paidBy)
             
-            personTrip?.addExpense(expense: self.expense!)
+            NSLog("Expense adicionada")
+            //personTrip?.addExpense(expense: self.expense!)
             
             //self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
         }

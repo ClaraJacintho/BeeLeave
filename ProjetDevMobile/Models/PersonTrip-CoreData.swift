@@ -30,7 +30,7 @@ extension PersonTrip {
         self.init(context: CoreDataManager.context)
         self.hasPerson = person
         self.hasTrip  = trip
-        self.hasExpense = expense
+        //self.hasExpense = expense
         self.pbalance = balance
     }
     
@@ -39,7 +39,7 @@ extension PersonTrip {
         let expense : Expense? = nil
         self.hasPerson = person
         self.hasTrip  = trip
-        self.hasExpense = expense
+        //self.hasExpense = expense
         self.pbalance = 0.0
     }
     
@@ -49,18 +49,18 @@ extension PersonTrip {
         let person : Person? = nil
         self.hasPerson = person
         self.hasTrip  = trip
-        self.hasExpense = expense
+        //self.hasExpense = expense
         self.pbalance = 0.0
     }
     
-    func addExpense(person: Person, cost: Double){
-        self.hasExpense?.pcost = cost
-        self.hasExpense?.paidBy = person
-    }
+//    func addExpense(person: Person, cost: Double){
+//        self.hasExpense?.pcost = cost
+//        self.hasExpense?.paidBy = person
+//    }
     
-    func addExpense(expense: Expense){
-        self.hasExpense = expense
-    }
+//    func addExpense(expense: Expense){
+//        self.hasExpense = expense
+//    }
     
     
     static func search(forPerson person: Person, trip: Trip) -> PersonTrip {

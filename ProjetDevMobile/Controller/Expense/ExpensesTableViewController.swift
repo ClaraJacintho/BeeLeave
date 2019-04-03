@@ -11,19 +11,19 @@ import UIKit
 class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableViewDelegate, ExpenseViewModelDelegate {
     var tableView   : UITableView
     var expenseViewModel : ExpenseViewModel
-    let fetchResultController : PersonTripFetchResultController
-    
+    let expenseFRC : ExpenseFetchResultController
+
     init(tableView: UITableView, trip : Trip) {
         self.tableView        = tableView
-        self.fetchResultController = PersonTripFetchResultController(view : tableView, trip : trip)
-        
-        self.expenseViewModel = ExpenseViewModel(data: self.fetchResultController.expensesTripFetched)
-        
+        self.expenseFRC = ExpenseFetchResultController(view : tableView, trip : trip)
+
+        self.expenseViewModel = ExpenseViewModel(data: self.expenseFRC.expensesFetched)
+
         super.init()
         self.tableView.dataSource      = self
         self.tableView.delegate = self
         self.expenseViewModel.delegate = self
-        
+
     }
     //-------------------------------------------------------------------------------------------------
     // MARK: - TableView DataSource
@@ -38,11 +38,11 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseIdCell", for: indexPath)
         guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return cell }
-        
+
         //Show participant full name
-        cell.textLabel?.text = String(expense.cost) + " " + (expense.paidBy?.firstName)!
+        cell.textLabel?.text = String(expense.cost) + " " + (expense.paidBy?.hasPerson?.fullName ?? "ERRO")
         return cell
-        
+
         //return configure(cell: cell, atIndexPath: indexPath)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -55,7 +55,7 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
             cell.accessoryType = .checkmark
         }
     }
-    
+
     //-------------------------------------------------------------------------------------------------
     // MARK: - PersonSetViewModelDelegate
     /// called when set globally changes
@@ -85,12 +85,12 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
     @discardableResult
     private func configure(cell: UITableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
         guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return cell }
-        
+
         //Show participant full name
-        cell.textLabel?.text = expense.paidBy?.firstName
-        
+        cell.textLabel?.text = expense.paidBy?.hasPerson?.fullName
+
         return cell
     }
-    
+
 }
 

@@ -9,12 +9,10 @@
 import UIKit
 import CoreData
 
-class ExpenseFetchResultController {}
-
-/*
 class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
     let tableView  : UITableView
     let trip : Trip
+    
     
     init(view : UITableView, trip : Trip){
         self.tableView  = view
@@ -31,44 +29,58 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     // MARK: - FetchResultController
     lazy var expensesFetched : NSFetchedResultsController<Expense> = {
         // prepare a request
-        let request : NSFetchRequest<Expense> = Person.fetchRequest()
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
         
-        personsRequest.predicate = NSPredicate(format: "hasTrip == %@", self.trip)
+        request.predicate = NSPredicate(format: "paidBy.hasTrip == %@", self.trip)
         
-        personsRequest.sortDescriptors = [NSSortDescriptor(key:#keyPath(PersonTrip.hasPerson),ascending:true),NSSortDescriptor(key:#keyPath(PersonTrip.hasPerson), ascending:true)]
+        request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.pcost),ascending:true),NSSortDescriptor(key:#keyPath(Expense.pcost), ascending:true)]
         
-        let fetchResultController1 = NSFetchedResultsController(fetchRequest: personsRequest, managedObjectContext:
-            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchResultController1.delegate = self
-        
-        do{
-            try fetchResultController1.performFetch()
-        }
-        catch let error as NSError{
-            fatalError(error.description)
-        }
-        
-        print(fetchResultController1.fetchedObjects?.count ?? 0)
-        
-        request.predicate = NSPredicate(format:"SELF in %@", fetchResultController1.fetchedObjects!)
-        
-        //        let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
-        //        print(personTest.hasPerson?.firstName)
-        //
-        //self.personsFetched.object(at: IndexPath(row: index, section: 0))
-        
-        
-        //        .fetchedObjects?.count
-        //        print(personsRequest.fetchedObj)
-        //request.
-        
-        request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Person.plastName),ascending:true),NSSortDescriptor(key:#keyPath(Person.pfirstName), ascending:true)]
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        print("Imprimindo count")
+        print(fetchResultController.fetchedObjects?.count ?? 0)
+        //let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
+        print("Expenses")
+        if ((fetchResultController.fetchedObjects?.count ?? 0) > 0){
+            for expense in fetchResultController.fetchedObjects! {
+                print(expense.cost)
+                print(expense.paidBy?.hasPerson?.fullName)
+            }
+        }
+        
+        
         fetchResultController.delegate = self
         
         return fetchResultController
+        
+//        do{
+//            try fetchResultController1.performFetch()
+//        }
+//        catch let error as NSError{
+//            fatalError(error.description)
+//        }
+//
+//        print(fetchResultController1.fetchedObjects?.count ?? 0)
+//
+//        request.predicate = NSPredicate(format:"SELF in %@", fetchResultController1.fetchedObjects!)
+//
+//        //        let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
+//        //        print(personTest.hasPerson?.firstName)
+//        //
+//        //self.personsFetched.object(at: IndexPath(row: index, section: 0))
+//
+//
+//        //        .fetchedObjects?.count
+//        //        print(personsRequest.fetchedObj)
+//        //request.
+//
+//        request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Person.plastName),ascending:true),NSSortDescriptor(key:#keyPath(Person.pfirstName), ascending:true)]
+//        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
+//            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
+//        fetchResultController.delegate = self
+//
+//        return fetchResultController
     }()
     
     
@@ -100,4 +112,3 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         }
     }
 }
-*/

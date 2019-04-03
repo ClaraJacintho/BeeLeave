@@ -39,7 +39,6 @@ class PersonSetViewModel{
     init(data: NSFetchedResultsController<Person>){
         self.personsFetched = data
     }
-    
 
     //-------------------------------------------------------------------------------------------------
     // MARK: View Model functions

@@ -15,11 +15,18 @@ extension Expense {
         set{ self.pcost = newValue }
     }
         
-    convenience init(paidBy: Person, cost: Double, tripData: PersonTrip){
+    convenience init(cost: Double, paidBy: PersonTrip){
         self.init(context: CoreDataManager.context)
         self.paidBy = paidBy
-        self.tripExpense = tripData
+        //self.tripExpense = tripData
         self.pcost = cost
     }
+    
+//    convenience init(paidBy: Person, cost: Double, tripData: PersonTrip){
+//        self.init(context: CoreDataManager.context)
+//        self.paidBy = tripData
+//        //self.tripExpense = tripData
+//        self.pcost = cost
+//    }
     
 }
