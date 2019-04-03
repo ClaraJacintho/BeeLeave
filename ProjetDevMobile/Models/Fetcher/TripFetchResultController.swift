@@ -57,6 +57,7 @@ class TripFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             } default:
             break
-        } }
+        }
+    }
 }
 

@@ -28,11 +28,11 @@ protocol PersonTripViewModelDelegate {
     func personTripAdded(at indexPath: IndexPath)
 }
 
-class PersonTripViewModel{
+class PersonTripViewModel {
     
     var delegate : PersonTripViewModelDelegate? = nil
     var personsFetched : NSFetchedResultsController<Person>
-    //var personTripFetched : NSFetchedResultsController<PersonTrip>
+    //var expensesFetched : NSFetchedResultsController<Expense>
     
     init(data: NSFetchedResultsController<Person>){
         self.personsFetched = data

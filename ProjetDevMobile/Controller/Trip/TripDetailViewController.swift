@@ -17,31 +17,40 @@ class TripDetailViewController: UIViewController {
     @IBOutlet weak var personTable: UITableView!
     var personController : PersonsTableViewController!
    
+    @IBOutlet weak var expensesTable: UITableView!
+    var expensesController : ExpensesTableViewController!
+    
     var trip : Trip?
     var participants : [Person]?
-    
+    var personTrip : PersonTrip?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
         //Populate person list
         self.personController = PersonsTableViewController(tableView: personTable, trip : self.trip!)
         
+        //Populate expenses list
+        self.expensesController = ExpensesTableViewController(tableView: expensesTable, trip: self.trip!)
         
-        if let atrip = self.trip{
+        //Update labels
+        configLabels()
+        
+
+    }
+    
+    func configLabels() {
+        if let atrip = self.trip {
             self.ttitle.text = atrip.ttitle
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
             self.sdate.text = formatter.string(from: atrip.tstart!)
             self.edate.text = formatter.string(from: atrip.tend!)
-            
-            self.participants = self.personController.personTripViewModel.getAll()
-            
-        } else{
-            self.ttitle.text = "Mistakes were made"
+        } else {
+            self.ttitle.text = ""
             self.sdate.text = ""
             self.edate.text = ""
-            
         }
     }
     
@@ -73,7 +82,8 @@ class TripDetailViewController: UIViewController {
         }
 
         if let destController = segue.destination as? NewExpenseViewController {
-            destController.personTable = self.personTable
+            NSLog("enviando pessoa para expense")
+            destController.trip = self.trip
         }
     }
     
@@ -85,7 +95,15 @@ class TripDetailViewController: UIViewController {
                 print("Volando2")
                 self.personController.personTripViewModel.add(tripPerson: person)
             }
-        }
+        }        
+
+//        if let newExpenseController = sender.source as? NewExpenseViewController {
+//            if let newExpense : Expense = newExpenseController.expense {
+//                self.expensesController.expenseViewModel.add(expense: newExpense)
+//            }
+//        }
+        
+        
     }
     
 }

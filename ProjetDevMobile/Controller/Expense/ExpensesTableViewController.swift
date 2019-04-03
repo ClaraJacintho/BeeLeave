@@ -1,31 +1,28 @@
 //
-//  PersonTableViewController.swift
+//  ExpensesTableViewController.swift
 //  ProjetDevMobile
 //
-//  Created by Delton de Andrade Vaz on 20/03/2019.
+//  Created by Delton de Andrade Vaz on 02/04/19.
 //  Copyright © 2019 Delton de Andrade Vaz. All rights reserved.
 //
 
 import UIKit
 
-class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, PersonTripViewModelDelegate {
-    
-    
+class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableViewDelegate, ExpenseViewModelDelegate {
     var tableView   : UITableView
-    var personTripViewModel : PersonTripViewModel
+    var expenseViewModel : ExpenseViewModel
     let fetchResultController : PersonTripFetchResultController
-    var personSelected : Person?
     
     init(tableView: UITableView, trip : Trip) {
         self.tableView        = tableView
         self.fetchResultController = PersonTripFetchResultController(view : tableView, trip : trip)
         
-        self.personTripViewModel = PersonTripViewModel(data: self.fetchResultController.personsTripFetched)
+        self.expenseViewModel = ExpenseViewModel(data: self.fetchResultController.expensesTripFetched)
         
         super.init()
         self.tableView.dataSource      = self
         self.tableView.delegate = self
-        self.personTripViewModel.delegate = self
+        self.expenseViewModel.delegate = self
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -36,14 +33,14 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.personTripViewModel.count
+        return self.expenseViewModel.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCellId", for: indexPath)
-        guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "expenseIdCell", for: indexPath)
+        guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return cell }
         
         //Show participant full name
-        cell.textLabel?.text = person.fullName
+        cell.textLabel?.text = String(expense.cost) + " " + (expense.paidBy?.firstName)!
         return cell
         
         //return configure(cell: cell, atIndexPath: indexPath)
@@ -56,7 +53,6 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            self.personSelected = self.personTripViewModel.get(personTripAt: indexPath.row)
         }
     }
     
@@ -69,31 +65,32 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     /// called when a Person is deleted from set
     ///
     /// - Parameter indexPath: (section,row) of deletion
-    func personTripDeleted(at indexPath: IndexPath) {
+    func expenseDeleted(at indexPath: IndexPath) {
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     /// called when a Person is updated in set
     ///
     /// - Parameter indexPath: (section, row) of updating
-    func personTripUpdated(at indexPath: IndexPath){
+    func expenseUpdated(at indexPath: IndexPath){
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     /// called when a Person is added to set
     ///
     /// - Parameter indexPath: (section,row) of add
-    func personTripAdded(at indexPath: IndexPath){
+    func expenseAdded(at indexPath: IndexPath){
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     //-------------------------------------------------------------------------------------------------
     // MARK: - convenience methods
     @discardableResult
     private func configure(cell: UITableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
-        guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
+        guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return cell }
         
         //Show participant full name
-        cell.textLabel?.text = person.fullName //+ (person.trip?.ttitle)!
+        cell.textLabel?.text = expense.paidBy?.firstName
         
         return cell
     }
     
 }
+

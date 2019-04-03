@@ -21,6 +21,8 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     var newTrip : Trip?
     
+    var newPersonTrip : PersonTrip?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startDate.inputView = startPicker
@@ -63,6 +65,7 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
         if segue.identifier == "okNewTripSegue" {
             
             let title : String = self.tripTitle.text!
@@ -81,6 +84,9 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
             }
                        
             self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
+            
+            //TODO
+            self.newPersonTrip = PersonTrip(trip: self.newTrip!)
         }
         else{
             self.newTrip = nil

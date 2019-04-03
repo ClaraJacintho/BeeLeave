@@ -20,7 +20,7 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     var newPerson : Person?
     var trip: Trip?
     var personTrip : PersonTrip?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -34,6 +34,8 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
             let arrivalDate : Date    = self.arrivalDate.date
             self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)
             self.personTrip = PersonTrip(person: self.newPerson!, trip: self.trip!)
+            
+            //self.expense = Expense(paidBy: self.newPerson, cost: 0.0, tripData: self.personTrip)
         }
         else{
             self.newPerson = nil

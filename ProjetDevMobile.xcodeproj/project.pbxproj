@@ -13,6 +13,12 @@
 		DC6EE577224EC96C009172E2 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6EE576224EC96C009172E2 /* GalleryViewController.swift */; };
 		DC80A60322534EC100E79538 /* PersonTrip-CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80A60222534EC100E79538 /* PersonTrip-CoreData.swift */; };
 		DCA9E97F2253BC9300ABBAE3 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */; };
+		DCA9E9812253F5B400ABBAE3 /* ExpensesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E9802253F5B400ABBAE3 /* ExpensesTableViewController.swift */; };
+		DCA9E9832254052700ABBAE3 /* ExpenseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E9822254052700ABBAE3 /* ExpenseDAO.swift */; };
+		DCA9E9872254082700ABBAE3 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E9862254082700ABBAE3 /* Expense.swift */; };
+		DCA9E98922541E0B00ABBAE3 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E98822541E0B00ABBAE3 /* ExpenseViewModel.swift */; };
+		DCA9E98B22541E8000ABBAE3 /* ExpenseFetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E98A22541E8000ABBAE3 /* ExpenseFetchResultController.swift */; };
+		DCA9E98D225451CA00ABBAE3 /* PersonTripDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9E98C225451C900ABBAE3 /* PersonTripDAO.swift */; };
 		DCAB7AF72242372300845413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF62242372300845413 /* AppDelegate.swift */; };
 		DCAB7AF92242372300845413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB7AF82242372300845413 /* ViewController.swift */; };
 		DCAB7AFC2242372300845413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB7AFA2242372300845413 /* Main.storyboard */; };
@@ -63,6 +69,12 @@
 		DC6EE576224EC96C009172E2 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		DC80A60222534EC100E79538 /* PersonTrip-CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonTrip-CoreData.swift"; sourceTree = "<group>"; };
 		DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
+		DCA9E9802253F5B400ABBAE3 /* ExpensesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTableViewController.swift; sourceTree = "<group>"; };
+		DCA9E9822254052700ABBAE3 /* ExpenseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDAO.swift; sourceTree = "<group>"; };
+		DCA9E9862254082700ABBAE3 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		DCA9E98822541E0B00ABBAE3 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		DCA9E98A22541E8000ABBAE3 /* ExpenseFetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseFetchResultController.swift; sourceTree = "<group>"; };
+		DCA9E98C225451C900ABBAE3 /* PersonTripDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTripDAO.swift; sourceTree = "<group>"; };
 		DCAB7AF32242372300845413 /* ProjetDevMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetDevMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB7AF62242372300845413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAB7AF82242372300845413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA9E97E2253BC9300ABBAE3 /* NewExpenseViewController.swift */,
+				DCA9E9802253F5B400ABBAE3 /* ExpensesTableViewController.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -212,13 +225,16 @@
 		DCAB7B27224238F600845413 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DCAB7B2A2242392D00845413 /* PersonSet.swift */,
 				DCCAC58E2245251F0068A2A1 /* Fetcher */,
 				DCAB7B3022423DA300845413 /* ViewModel */,
 				DCAB7B282242391100845413 /* Person.swift */,
 				DCCAC599224709590068A2A1 /* Trip.swift */,
-				DCAB7B2A2242392D00845413 /* PersonSet.swift */,
-				DCCAC58C22451B670068A2A1 /* CoreDataManager.swift */,
+				DCA9E9862254082700ABBAE3 /* Expense.swift */,
 				DC80A60222534EC100E79538 /* PersonTrip-CoreData.swift */,
+				DCA9E9822254052700ABBAE3 /* ExpenseDAO.swift */,
+				DCCAC58C22451B670068A2A1 /* CoreDataManager.swift */,
+				DCA9E98C225451C900ABBAE3 /* PersonTripDAO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,6 +258,7 @@
 				DCAB7B3122423DF400845413 /* PersonSetViewModel.swift */,
 				DCCAC59D2247144A0068A2A1 /* TripsViewModel.swift */,
 				DC6EE571224E2026009172E2 /* PersonTripViewModel.swift */,
+				DCA9E98822541E0B00ABBAE3 /* ExpenseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -260,6 +277,7 @@
 				DCCAC58F2245262C0068A2A1 /* PersonFetchResultController.swift */,
 				DCCAC59B22470F6C0068A2A1 /* TripFetchResultController.swift */,
 				DC6EE573224E7B17009172E2 /* PersonTripFetchResultController.swift */,
+				DCA9E98A22541E8000ABBAE3 /* ExpenseFetchResultController.swift */,
 			);
 			path = Fetcher;
 			sourceTree = "<group>";
@@ -413,8 +431,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA9E9872254082700ABBAE3 /* Expense.swift in Sources */,
 				DCCAC59A224709590068A2A1 /* Trip.swift in Sources */,
 				DCAB7B3722424D3000845413 /* NewPersonViewController.swift in Sources */,
+				DCA9E98D225451CA00ABBAE3 /* PersonTripDAO.swift in Sources */,
+				DCA9E9812253F5B400ABBAE3 /* ExpensesTableViewController.swift in Sources */,
 				DCCAC5A0224842F90068A2A1 /* NewTripViewController.swift in Sources */,
 				DCAB7B2B2242392D00845413 /* PersonSet.swift in Sources */,
 				DC80A60322534EC100E79538 /* PersonTrip-CoreData.swift in Sources */,
@@ -425,9 +446,11 @@
 				DC558942224A4BB200F20540 /* TripsViewController.swift in Sources */,
 				DCAB7B2E22423C4200845413 /* PersonsTableViewController.swift in Sources */,
 				DCCAC59C22470F6C0068A2A1 /* TripFetchResultController.swift in Sources */,
+				DCA9E98922541E0B00ABBAE3 /* ExpenseViewModel.swift in Sources */,
 				DCAB7AFF2242372300845413 /* ProjetDevMobile.xcdatamodeld in Sources */,
 				DCCAC5952245B8910068A2A1 /* TripItemTableViewCell.swift in Sources */,
 				DCAB7B292242391100845413 /* Person.swift in Sources */,
+				DCA9E98B22541E8000ABBAE3 /* ExpenseFetchResultController.swift in Sources */,
 				DCCAC5982245C0330068A2A1 /* TripTableViewController.swift in Sources */,
 				DC6EE572224E2026009172E2 /* PersonTripViewModel.swift in Sources */,
 				DCCAC5A2224864B00068A2A1 /* TripDetailViewController.swift in Sources */,
@@ -435,6 +458,7 @@
 				DCCAC5902245262C0068A2A1 /* PersonFetchResultController.swift in Sources */,
 				DCCAC58B2244DF8E0068A2A1 /* PersonDetailViewController.swift in Sources */,
 				DC6EE577224EC96C009172E2 /* GalleryViewController.swift in Sources */,
+				DCA9E9832254052700ABBAE3 /* ExpenseDAO.swift in Sources */,
 				DCCAC59E2247144A0068A2A1 /* TripsViewModel.swift in Sources */,
 				DCAB7B352242430E00845413 /* PersonPresenter.swift in Sources */,
 				DCCAC58D22451B670068A2A1 /* CoreDataManager.swift in Sources */,

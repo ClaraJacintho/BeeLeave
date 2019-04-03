@@ -10,7 +10,9 @@ import Foundation
 
 import UIKit
 import CoreData
-class CoreDataManager{
+
+class CoreDataManager {
+    
     /// context manager
     static let context : NSManagedObjectContext = {
         guard let appDelegate  = UIApplication.shared.delegate as? AppDelegate else {
@@ -19,6 +21,7 @@ class CoreDataManager{
         }
         return appDelegate.persistentContainer.viewContext
     }()
+    
     /// return entity description from context
     ///
     /// - Parameter name: name of the entity
@@ -29,6 +32,7 @@ class CoreDataManager{
         }
         return entity
     }
+    
     @discardableResult
     /// save all data
     ///
@@ -42,4 +46,6 @@ class CoreDataManager{
         catch let error as NSError{
             return error
         }
-    } }
+    }
+    
+}

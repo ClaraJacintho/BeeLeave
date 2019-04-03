@@ -20,10 +20,12 @@ class PersonTripFetchResultController: NSObject, NSFetchedResultsControllerDeleg
         super.init()
         do{
             try self.personsTripFetched.performFetch()
+            try self.expensesTripFetched.performFetch()
         }
         catch let error as NSError{
             fatalError(error.description)
-        } }
+        }
+    }
     //-------------------------------------------------------------------------------------------------
     // MARK: - FetchResultController
     lazy var personsTripFetched : NSFetchedResultsController<Person> = {
@@ -68,6 +70,54 @@ class PersonTripFetchResultController: NSObject, NSFetchedResultsControllerDeleg
         
         return fetchResultController
     }()
+    
+    // MARK: - FetchResultController
+    lazy var expensesTripFetched : NSFetchedResultsController<Expense> = {
+        
+        let expenseRequest : NSFetchRequest<Expense> = Expense.fetchRequest()
+        
+        // prepare a request
+        let personsRequest : NSFetchRequest<PersonTrip> = PersonTrip.fetchRequest()
+        
+        // query
+        personsRequest.predicate = NSPredicate(format: "hasTrip == %@", self.trip)
+        
+        personsRequest.sortDescriptors = [NSSortDescriptor(key:#keyPath(PersonTrip.hasExpense),ascending:true),NSSortDescriptor(key:#keyPath(PersonTrip.hasExpense), ascending:true)]
+        
+        let fetchResultController1 = NSFetchedResultsController(fetchRequest: personsRequest, managedObjectContext:
+            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchResultController1.delegate = self
+        
+        do{
+            try fetchResultController1.performFetch()
+        }
+        catch let error as NSError{
+            fatalError(error.description)
+        }
+        
+        print(fetchResultController1.fetchedObjects?.count ?? 0)
+        
+        expenseRequest.predicate = NSPredicate(format:"SELF in %@", fetchResultController1.fetchedObjects!)
+        
+        //        let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
+        //        print(personTest.hasPerson?.firstName)
+        //
+        //self.personsFetched.object(at: IndexPath(row: index, section: 0))
+        
+        
+        //        .fetchedObjects?.count
+        //        print(personsRequest.fetchedObj)
+        //request.
+        
+        expenseRequest.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.pcost),ascending:true),NSSortDescriptor(key:#keyPath(Expense.pcost), ascending:true)]
+        let fetchResultController = NSFetchedResultsController(fetchRequest: expenseRequest, managedObjectContext:
+            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultController.delegate = self
+        
+        return fetchResultController
+    }()
+    
     
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
