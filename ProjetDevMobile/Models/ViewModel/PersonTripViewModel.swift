@@ -47,7 +47,9 @@ class PersonTripViewModel {
     
     public func add(tripPerson: Person){
         if let indexPath = self.personsFetched.indexPath(forObject: tripPerson){
-            self.delegate?.personTripAdded(at: indexPath)
+            print("Deve atualizar")
+            self.delegate!.personTripAdded(at: indexPath)
+            print("Passou aqui!")
         }
     }
     
@@ -59,9 +61,11 @@ class PersonTripViewModel {
         return self.personsFetched.object(at: IndexPath(row: index, section: 0))
     }
     
-    public func getAll() -> [Person]?{
-        return self.personsFetched.fetchedObjects
-        //return self.personsFetched.object(at: IndexPath(row: index, section: 0))
-    }
+//    public func updateAddPerson(atIndexPath indexPath: IndexPath, withPerson person: Person){
+//        //let person = self.personsFetched.object(at: indexPath)
+//        let trip = self.personsFetched.object(at: indexPath)
+//        //trip.participants?.adding(person)
+//        self.delegate?.personTripUpdated(at: indexPath)
+//    }
 
 }

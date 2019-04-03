@@ -21,12 +21,13 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     var trip: Trip?
     var personTrip : PersonTrip?
     
+    var personTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "okNewPerson" {
             let firstname : String  = self.firstnameTextField.text!
@@ -35,7 +36,9 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
             self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)
             self.personTrip = PersonTrip(person: self.newPerson!, trip: self.trip!)
             
-            //self.expense = Expense(paidBy: self.newPerson, cost: 0.0, tripData: self.personTrip)
+            self.newPerson?.didSave()
+            self.personTrip?.didSave()
+            
         }
         else{
             self.newPerson = nil
@@ -50,15 +53,5 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
             } }
         return false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

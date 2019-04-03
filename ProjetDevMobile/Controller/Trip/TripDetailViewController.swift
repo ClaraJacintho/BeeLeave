@@ -85,7 +85,7 @@ class TripDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let destController = segue.destination as? NewPersonViewController {
             destController.trip = self.trip
-            
+            destController.personTable = self.personTable
         }
         
         if let destController = segue.destination as? PersonDetailViewController {
@@ -96,6 +96,7 @@ class TripDetailViewController: UIViewController {
                     destController.person = self.personController.personTripViewModel.get(personTripAt: indexPath.row)
                     destController.totalCost = self.totalCostValue
                     destController.totalParticipants = (self.trip?.person?.count)!
+                
                 }
         }
 
@@ -105,15 +106,17 @@ class TripDetailViewController: UIViewController {
         }
     }
     
-    //Methodo que retorna de NewPersonViewController adicionando uma pessoa a viagem
+    //Methodo que retorna de NewPersonViewController adicionando uma pessoa a viagem    
     @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
         if let newPersonController = sender.source as? NewPersonViewController {
-            print("Volando1")
             if let person : Person = newPersonController.newPerson {
-                print("Volando2")
+                print("-------------CHEGOU AQUI1 -----------------")
                 self.personController.personTripViewModel.add(tripPerson: person)
+                print("-------------CHEGOU AQUI111 -----------------")
             }
-        }        
+        }
+    }
+
 
       // if let newExpenseController = sender.source as? NewExpenseViewController {
       //      if let newExpense : Expense = newExpenseController.expense {
@@ -121,7 +124,14 @@ class TripDetailViewController: UIViewController {
       //      }
       //  }
         
-        
-    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        super.viewDidAppear(true)
+//        //fetchData
+//        //fetch_data()
+//        personTable.reloadData()
+//        expensesTable.reloadData()
+//    }
     
 }

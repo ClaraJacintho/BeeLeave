@@ -14,6 +14,7 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     var tableView   : UITableView
     var personTripViewModel : PersonTripViewModel
     let fetchResultController : PersonTripFetchResultController
+       
     var personSelected : Person?
     
     init(tableView: UITableView, trip : Trip) {
@@ -26,6 +27,7 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource      = self
         self.tableView.delegate = self
         self.personTripViewModel.delegate = self
+        
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -43,10 +45,10 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
         guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
         
         //Show participant full name
-        cell.textLabel?.text = person.fullName
-        return cell
+        //cell.textLabel?.text = person.fullName
+        //return cell
         
-        //return configure(cell: cell, atIndexPath: indexPath)
+        return configure(cell: cell, atIndexPath: indexPath)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {

@@ -49,13 +49,23 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
         
         
         if segue.identifier == "okNewExpense" {
+            var cost : Double = 0.0
+            if self.costValue.text?.isEmpty ?? true {
+                let alert = UIAlertController(title: "Error!", message: "Cost is empty!", preferredStyle: UIAlertController.Style.alert)
+                self.present(alert, animated: true, completion: nil)
+                return
+            } else {
+                cost = Double(self.costValue.text!)!
+            }
             
-            let cost : Double = Double(self.costValue.text!)!
-            
+            guard let _ : Person = self.personExpensesTable.personSelected else {
+                let alert = UIAlertController(title: "Error!", message: "Select a person!", preferredStyle: UIAlertController.Style.alert)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             
             let whoPaid : Person = self.personExpensesTable.personSelected!
-            
-
+        
             let paidBy : PersonTrip = PersonTrip.search(forPerson: whoPaid, trip: self.trip!)
             
             

@@ -24,8 +24,7 @@ class PersonDetailViewController: UIViewController {
     var totalCost : Double = 0.0
     var totalParticipants : Int = 0
     @IBOutlet weak var balance: UILabel!
-    @IBOutlet weak var totalPaidFor: UILabel!
-    
+    @IBOutlet weak var totalPaidFor: UILabel!    
     
     override func viewDidLoad() {
         super.viewDidLoad()

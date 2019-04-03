@@ -22,6 +22,7 @@ class TripsViewController: UIViewController {
         // Do any additional setup after loading the view.
        // self.dummyController = DummyController(self.tableView)
         self.tripController = TripTableViewController(tableView: self.tableView)
+        
     }
     
 
@@ -52,6 +53,21 @@ class TripsViewController: UIViewController {
                     self.tripController.tripViewModel.add(trip: newTrip)
             }
         }
+    }
+    
+//    @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
+//        if let newPersonController = sender.source as? NewPersonViewController {
+//            if let person : Person = newPersonController.newPerson {
+//                self.personController.personTripViewModel.add(tripPerson: person)
+//            }
+//        }
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //fetchData
+        //fetch_data()
+        tableView.reloadData()
     }
  
     

@@ -12,9 +12,6 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
     var tableView   : UITableView
     var tripViewModel : TripsViewModel
     
-    //TODO
-    //var trips : PersonTripViewModel = PersonTripSetViewModel(personTripSet: PersonTripSet())
-    
     let fetchResultController : TripFetchResultController
     
     init(tableView: UITableView) {
@@ -23,15 +20,11 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         self.fetchResultController = TripFetchResultController(view : tableView)
         self.tripViewModel = TripsViewModel(data: self.fetchResultController.tripsFetched)
         
-        
-        //self.personTripViewModel = PersonTripViewModel(data: <#T##NSFetchedResultsController<Person>#>)
-        
         super.init()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tripViewModel.delegate = self
-        
         
     }
     
@@ -50,10 +43,6 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
     func tripAdded(at indexPath: IndexPath) {
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
-    
-
-
-    
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 214.5
@@ -82,71 +71,17 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         if image != nil {
             cell.tripImage?.image = image
         }
-        
+        print("Testando")
         cell.nbParticipants?.text = String(trip.person!.count)
-        //cell.nextToPay?.text = trip.person.hasExpense.
+        
+        guard let nextToPay = PersonTripDAO.getNextToPayByTrip(byTrip: trip) else {
+            cell.nextToPay?.text = "No participants"
+            return cell
+        }
+        cell.nextToPay?.text = nextToPay.fullName
         
         return cell
     }
-    
-//    func ttableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        print("hello")
-//         guard let cell : TripItemTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else {
-//            print("Cell is not Current Trip Cell")
-//            fatalError()
-//        }
-//         return configure(cell: cell, atIndexPath: indexPath)
-//    }
-    
-    
-    
-    
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     //-------------------------------------------------------------------------------------------------
     // MARK: - convenience methods

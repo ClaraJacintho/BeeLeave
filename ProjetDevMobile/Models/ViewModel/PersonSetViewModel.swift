@@ -46,7 +46,7 @@ class PersonSetViewModel{
     ///
     /// - Parameter person: Person to be added
     public func add(person: Person){
-        if let indexPath = self.personsFetched.indexPath(forObject: person){
+        if var indexPath = self.personsFetched.indexPath(forObject: person){
             self.delegate?.personAdded(at: indexPath)
         }
     }
