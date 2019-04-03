@@ -25,6 +25,10 @@ class PersonTripDAO{
         CoreDataManager.context.insert(personTrip)
     }
     
+    static func count(byTrip trip : Trip) -> Int {
+        return self.getPersonTripByTrip(trip: trip).count
+    }
+    
     static func getAllPersonTrip() -> [PersonTrip]{
         self.request.predicate = nil
         do{

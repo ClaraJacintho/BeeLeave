@@ -25,6 +25,19 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
         self.expenseViewModel.delegate = self
 
     }
+    
+    init(tableView: UITableView, person : Person) {
+        self.tableView        = tableView
+        self.expenseFRC = ExpenseFetchResultController(view : tableView, person : person)
+        
+        self.expenseViewModel = ExpenseViewModel(data: self.expenseFRC.personExpensesFetched)
+        
+        super.init()
+        self.tableView.dataSource      = self
+        self.tableView.delegate = self
+        self.expenseViewModel.delegate = self
+        
+    }
     //-------------------------------------------------------------------------------------------------
     // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,16 +57,6 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
         return cell
 
         //return configure(cell: cell, atIndexPath: indexPath)
-    }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .none
-        }
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
-        }
     }
 
     //-------------------------------------------------------------------------------------------------

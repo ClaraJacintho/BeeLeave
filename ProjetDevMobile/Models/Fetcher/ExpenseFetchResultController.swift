@@ -11,12 +11,14 @@ import CoreData
 
 class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
     let tableView  : UITableView
-    let trip : Trip
+    let trip : Trip?
+    let person : Person?
     
     
     init(view : UITableView, trip : Trip){
         self.tableView  = view
         self.trip = trip
+        self.person = nil
         
         super.init()
         do{
@@ -24,14 +26,29 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         }
         catch let error as NSError{
             fatalError(error.description)
-        } }
+        }
+    }
+    
+    init(view : UITableView, person : Person){
+        self.tableView  = view
+        self.person = person
+        self.trip = nil
+        
+        super.init()
+        do{
+            try self.personExpensesFetched.performFetch()
+        }
+        catch let error as NSError{
+            fatalError(error.description)
+        }
+    }
     //-------------------------------------------------------------------------------------------------
     // MARK: - FetchResultController
     lazy var expensesFetched : NSFetchedResultsController<Expense> = {
         // prepare a request
         let request : NSFetchRequest<Expense> = Expense.fetchRequest()
         
-        request.predicate = NSPredicate(format: "paidBy.hasTrip == %@", self.trip)
+        request.predicate = NSPredicate(format: "paidBy.hasTrip == %@", self.trip!)
         
         request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.pcost),ascending:true),NSSortDescriptor(key:#keyPath(Expense.pcost), ascending:true)]
         
@@ -48,39 +65,35 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
                 print(expense.paidBy?.hasPerson?.fullName)
             }
         }
-        
-        
         fetchResultController.delegate = self
         
         return fetchResultController
+    }()
+    
+    lazy var personExpensesFetched : NSFetchedResultsController<Expense> = {
+        // prepare a request
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
         
-//        do{
-//            try fetchResultController1.performFetch()
-//        }
-//        catch let error as NSError{
-//            fatalError(error.description)
-//        }
-//
-//        print(fetchResultController1.fetchedObjects?.count ?? 0)
-//
-//        request.predicate = NSPredicate(format:"SELF in %@", fetchResultController1.fetchedObjects!)
-//
-//        //        let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
-//        //        print(personTest.hasPerson?.firstName)
-//        //
-//        //self.personsFetched.object(at: IndexPath(row: index, section: 0))
-//
-//
-//        //        .fetchedObjects?.count
-//        //        print(personsRequest.fetchedObj)
-//        //request.
-//
-//        request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Person.plastName),ascending:true),NSSortDescriptor(key:#keyPath(Person.pfirstName), ascending:true)]
-//        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
-//            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
-//        fetchResultController.delegate = self
-//
-//        return fetchResultController
+        request.predicate = NSPredicate(format: "paidBy.hasPerson == %@", self.person!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key:#keyPath(Expense.pcost),ascending:true),NSSortDescriptor(key:#keyPath(Expense.pcost), ascending:true)]
+        
+        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
+            CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        print("Imprimindo count")
+        print(fetchResultController.fetchedObjects?.count ?? 0)
+        //let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
+        print("Expenses")
+        if ((fetchResultController.fetchedObjects?.count ?? 0) > 0){
+            for expense in fetchResultController.fetchedObjects! {
+                print(expense.cost)
+                print(expense.paidBy?.hasPerson?.fullName)
+            }
+        }
+        fetchResultController.delegate = self
+        
+        return fetchResultController
     }()
     
     

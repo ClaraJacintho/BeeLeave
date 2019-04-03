@@ -20,7 +20,7 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     var newPerson : Person?
     var trip: Trip?
     var personTrip : PersonTrip?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

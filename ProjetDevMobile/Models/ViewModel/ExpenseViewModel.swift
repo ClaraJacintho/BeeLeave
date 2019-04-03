@@ -31,9 +31,14 @@ protocol ExpenseViewModelDelegate {
 class ExpenseViewModel {
     var delegate : ExpenseViewModelDelegate? = nil
     var expensesFetched : NSFetchedResultsController<Expense>
-    
+    var totalCost : Double = 0
+   
     init(data: NSFetchedResultsController<Expense>){
         self.expensesFetched = data
+        for expenses in self.expensesFetched.fetchedObjects! {
+            self.totalCost += expenses.cost
+            
+        }
     }
     
     public func add(expense: Expense){

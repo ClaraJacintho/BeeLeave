@@ -13,6 +13,9 @@ class TripsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var tripController : TripTableViewController!
     
+    @IBOutlet weak var nbParticipants: UILabel!
+    @IBOutlet weak var nextToPay: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

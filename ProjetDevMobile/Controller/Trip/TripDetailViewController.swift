@@ -20,9 +20,13 @@ class TripDetailViewController: UIViewController {
     @IBOutlet weak var expensesTable: UITableView!
     var expensesController : ExpensesTableViewController!
     
+    @IBOutlet weak var totalCost: UILabel!
+    
+    
     var trip : Trip?
     var participants : [Person]?
     var personTrip : PersonTrip?
+    var totalCostValue : Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,17 @@ class TripDetailViewController: UIViewController {
         
         //Populate expenses list
         self.expensesController = ExpensesTableViewController(tableView: expensesTable, trip: self.trip!)
+        
+
+        for personTable in (self.trip!.person?.allObjects)! as! [PersonTrip] {
+            for expenses in (personTable.hasExpense!){
+                totalCostValue += (expenses as! Expense).pcost
+                print((expenses as! Expense).pcost)
+            }
+        }
+        
+        print("Nb participants")
+        print(self.trip?.person?.count)
         
         //Update labels
         configLabels()
@@ -47,6 +62,7 @@ class TripDetailViewController: UIViewController {
             formatter.dateStyle = .medium
             self.sdate.text = formatter.string(from: atrip.tstart!)
             self.edate.text = formatter.string(from: atrip.tend!)
+            self.totalCost.text = String(self.totalCostValue)
         } else {
             self.ttitle.text = ""
             self.sdate.text = ""
@@ -69,7 +85,7 @@ class TripDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let destController = segue.destination as? NewPersonViewController {
             destController.trip = self.trip
-            print("Sabe que estou indo")
+            
         }
         
         if let destController = segue.destination as? PersonDetailViewController {
@@ -78,6 +94,8 @@ class TripDetailViewController: UIViewController {
                     return
                 }
                     destController.person = self.personController.personTripViewModel.get(personTripAt: indexPath.row)
+                    destController.totalCost = self.totalCostValue
+                    destController.totalParticipants = (self.trip?.person?.count)!
                 }
         }
 

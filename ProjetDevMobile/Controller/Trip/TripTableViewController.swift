@@ -83,6 +83,9 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
             cell.tripImage?.image = image
         }
         
+        cell.nbParticipants?.text = String(trip.person!.count)
+        //cell.nextToPay?.text = trip.person.hasExpense.
+        
         return cell
     }
     

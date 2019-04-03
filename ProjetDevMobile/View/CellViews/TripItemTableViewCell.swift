@@ -15,6 +15,7 @@ class TripItemTableViewCell: UITableViewCell {
     @IBOutlet weak var endsDate: UILabel?
     @IBOutlet weak var nbParticipants: UILabel?
     @IBOutlet weak var participantAvatar: UIImageView?
+    @IBOutlet weak var nextToPay: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

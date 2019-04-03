@@ -16,11 +16,26 @@ class PersonDetailViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+    var expensesController : ExpensesTableViewController!
+    
     @IBOutlet weak var arrivalDateLabel: UILabel!
+    
+    var totalCost : Double = 0.0
+    var totalParticipants : Int = 0
+    @IBOutlet weak var balance: UILabel!
+    @IBOutlet weak var totalPaidFor: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
+        //Populate expenses list
+        self.expensesController = ExpensesTableViewController(tableView: tableView, person: self.person!)
+        
+        
         if let aperson = self.person{
   
             self.nameLabel.text = aperson.fullName
@@ -29,6 +44,24 @@ class PersonDetailViewController: UIViewController {
             
             self.arrivalDateLabel.text = formatter.string(from: aperson.arrivalDate ?? Date())
             
+            let paidFor : Double = self.expensesController.expenseViewModel.totalCost
+            self.totalPaidFor.text = String(paidFor)
+            
+            print("TotalCost: " + String(self.totalCost))
+            print("Nbparticipants: " + String(self.totalParticipants))
+            
+            var bal : Double = 0
+            var owed : Double = 0
+            var owes : Double = 0
+            let doubleTotParticipants = Double(self.totalParticipants)
+            
+            owed = (paidFor/(doubleTotParticipants)) * (doubleTotParticipants-1)
+            owes = (self.totalCost - paidFor)/(doubleTotParticipants)
+            bal =  owed - owes
+            
+            print(bal)
+            
+            self.balance?.text = String(bal)
             
             //self.lastnameLabel.resize
             //self.presenter.birthDate(ofPerson: aperson)
