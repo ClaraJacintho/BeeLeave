@@ -64,14 +64,14 @@ class PersonSet : Sequence {
     }
     
     //Done
-    func look(person: Person) -> Person? {
-        for p in self{
-            if( (p.firstName == person.firstName) && (p.lastName == person.lastName) && (p.age == person.age)){
-                return p
-            }
-        }
-        return nil
-    }
+//    func look(person: Person) -> Person? {
+//        for p in self{
+//            if( (p.firstName == person.firstName) && (p.lastName == person.lastName) && (p.age == person.age)){
+//                return p
+//            }
+//        }
+//        return nil
+//    }
     
     //contains and look by firstName
     //Done
@@ -126,20 +126,20 @@ class PersonSet : Sequence {
     
     //contains and look by prenom, nom and birthdate
     //TODO test
-    func contains(forPersonsWithFirstName firstName: String, withLastName lastName: String, withBirthDate birthDate: Date) -> Bool {
-        return self.setPerson.contains(where: {$0.firstName==firstName && $0.lastName==lastName && $0.birthDate==birthDate})
-    }
+//    func contains(forPersonsWithFirstName firstName: String, withLastName lastName: String, withBirthDate birthDate: Date) -> Bool {
+//        return self.setPerson.contains(where: {$0.firstName==firstName && $0.lastName==lastName && $0.birthDate==birthDate})
+//    }
     
     
     //TODO test
-    func look(forPersonsWithFirstName firstName: String, withLastName lastName: String, withBirthDate birthDate: Date) -> Person? {
-        for p in self{
-            if( (p.firstName == firstName) && (p.lastName == lastName) && (p.birthDate == birthDate)){
-                return p
-            }
-        }
-        return nil
-    }
+//    func look(forPersonsWithFirstName firstName: String, withLastName lastName: String, withBirthDate birthDate: Date) -> Person? {
+//        for p in self{
+//            if( (p.firstName == firstName) && (p.lastName == lastName) && (p.birthDate == birthDate)){
+//                return p
+//            }
+//        }
+//        return nil
+//    }
     
     
     //IndexOf

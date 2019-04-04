@@ -15,28 +15,28 @@ protocol PersonPresenterProtocol {
 }
 
 
-class PersonPresenter : PersonPresenterProtocol {
+class PersonPresenter{
     fileprivate var firstName : String = ""
     fileprivate var lastName : String = ""
     
     
-    func text(ofPerson person:  Person) -> String{
-        let date = self.birthDate(ofPerson: person)
-        if date.isEmpty{
-            return person.fullName
-        }
-        else{
-            return person.fullName + " - " + date
-        }
-    }
-    func birthDate(ofPerson person: Person) -> String{
-        guard let date = person.birthDate else{
-            return ""
-        }
-        let df = DateFormatter()
-        df.dateFormat = "dd/mm/yy"
-        let ret = df.string(from: date)
-        return ret
-    }
+//    func text(ofPerson person:  Person) -> String{
+//        let date = self.birthDate(ofPerson: person)
+//        if date.isEmpty{
+//            return person.fullName
+//        }
+//        else{
+//            return person.fullName + " - " + date
+//        }
+//    }
+//    func birthDate(ofPerson person: Person) -> String{
+//        guard let date = person.birthDate else{
+//            return ""
+//        }
+//        let df = DateFormatter()
+//        df.dateFormat = "dd/mm/yy"
+//        let ret = df.string(from: date)
+//        return ret
+//    }
     
 }

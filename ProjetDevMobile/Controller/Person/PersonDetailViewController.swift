@@ -46,19 +46,21 @@ class PersonDetailViewController: UIViewController {
             let paidFor : Double = self.expensesController.expenseViewModel.totalCost
             self.totalPaidFor.text = String(paidFor)
             
-            print("TotalCost: " + String(self.totalCost))
-            print("Nbparticipants: " + String(self.totalParticipants))
-            
+         
             var bal : Double = 0
             var owed : Double = 0
             var owes : Double = 0
             let doubleTotParticipants = Double(self.totalParticipants)
             
-            owed = (paidFor/(doubleTotParticipants)) * (doubleTotParticipants-1)
-            owes = (self.totalCost - paidFor)/(doubleTotParticipants)
-            bal =  owed - owes
+            if(doubleTotParticipants <= 1){ // in theory its is always at least 1
+                bal =  paidFor
+            }else{
+                owed = (paidFor/(doubleTotParticipants)) * (doubleTotParticipants-1)
+                owes = (self.totalCost - paidFor)/(doubleTotParticipants)
+                bal =  owed - owes
+            }
             
-            print(bal)
+            
             
             self.balance?.text = String(bal)
             

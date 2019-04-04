@@ -55,16 +55,7 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
-        print("Imprimindo count")
-        print(fetchResultController.fetchedObjects?.count ?? 0)
-        //let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
-        print("Expenses")
-        if ((fetchResultController.fetchedObjects?.count ?? 0) > 0){
-            for expense in fetchResultController.fetchedObjects! {
-                print(expense.cost)
-                print(expense.paidBy?.hasPerson?.fullName)
-            }
-        }
+     
         fetchResultController.delegate = self
         
         return fetchResultController
@@ -81,16 +72,11 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
-        print("Imprimindo count")
-        print(fetchResultController.fetchedObjects?.count ?? 0)
+       
+       
         //let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
-        print("Expenses")
-        if ((fetchResultController.fetchedObjects?.count ?? 0) > 0){
-            for expense in fetchResultController.fetchedObjects! {
-                print(expense.cost)
-                print(expense.paidBy?.hasPerson?.fullName)
-            }
-        }
+
+        
         fetchResultController.delegate = self
         
         return fetchResultController

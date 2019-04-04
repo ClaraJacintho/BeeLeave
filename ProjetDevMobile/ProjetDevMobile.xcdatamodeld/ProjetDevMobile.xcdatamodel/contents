@@ -5,17 +5,15 @@
         <relationship name="paidBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasExpense" inverseEntity="PersonTrip" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
-        <attribute name="imagefilepath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="parrivalDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="pbirthDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="pdepartureDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="parrivaldate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="pfirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="plastName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="trip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasPerson" inverseEntity="PersonTrip" syncable="YES"/>
     </entity>
     <entity name="PersonTrip" representedClassName="PersonTrip" syncable="YES" codeGenerationType="class">
         <attribute name="pbalance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="hasExpense" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="paidBy" inverseEntity="Expense" syncable="YES"/>
+        <relationship name="hasExpense" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Expense" inverseName="paidBy" inverseEntity="Expense" syncable="YES"/>
         <relationship name="hasPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="trip" inverseEntity="Person" syncable="YES"/>
         <relationship name="hasTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="person" inverseEntity="Trip" syncable="YES"/>
     </entity>
@@ -24,11 +22,11 @@
         <attribute name="tphoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="tstart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="ttitle" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="person" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonTrip" inverseName="hasTrip" inverseEntity="PersonTrip" syncable="YES"/>
+        <relationship name="person" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersonTrip" inverseName="hasTrip" inverseEntity="PersonTrip" syncable="YES"/>
     </entity>
     <elements>
         <element name="Expense" positionX="84.13671875" positionY="-1555.54296875" width="128" height="73"/>
-        <element name="Person" positionX="-153.19140625" positionY="-1637.62109375" width="128" height="148"/>
+        <element name="Person" positionX="-153.19140625" positionY="-1637.62109375" width="128" height="118"/>
         <element name="PersonTrip" positionX="98.6484375" positionY="-1710.51171875" width="128" height="103"/>
         <element name="Trip" positionX="301.4609375" positionY="-1639.12109375" width="128" height="118"/>
     </elements>

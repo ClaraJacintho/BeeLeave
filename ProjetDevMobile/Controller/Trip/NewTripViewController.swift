@@ -80,6 +80,8 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
             
             guard let imgData = self.imageView.image?.jpegData(compressionQuality: 1) else {
                 print("jpg error")
+                //TODO
+                //Alert
                 return
             }
                        
@@ -109,14 +111,9 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     @IBAction func imageClicked(_ sender: Any) {
-        print("Cliquei!")
-//        imagePickerController = UIImagePickerController()
-//        imagePickerController.delegate = self
-//        imagePickerController.sourceType = .camera
-//        present(imagePickerController, animated: true, completion: nil)
         
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            print("Button capture")
+
             
             imagePicker.delegate = self
             imagePicker.sourceType = .savedPhotosAlbum
@@ -136,10 +133,4 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
         dismiss(animated: true, completion: nil)
     }
 
-    
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        imagePickerController.dismiss(animated: true, completion: nil)
-//        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-//    }
-//    
 }

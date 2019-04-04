@@ -47,9 +47,7 @@ class PersonTripViewModel {
     
     public func add(tripPerson: Person){
         if let indexPath = self.personsFetched.indexPath(forObject: tripPerson){
-            print("Deve atualizar")
             self.delegate!.personTripAdded(at: indexPath)
-            print("Passou aqui!")
         }
     }
     

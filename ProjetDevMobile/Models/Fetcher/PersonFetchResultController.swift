@@ -41,32 +41,26 @@ class PersonFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
     
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
-        print("Begin updates!")
         self.tableView.beginUpdates()
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
-        print("Endsupdates!")
         self.tableView.endUpdates()
         CoreDataManager.save()
     }
         
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at
         indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        print("Estou no controller!")
         switch type {
         case .update:
-            print("Fiz um update")
             if let indexPath = indexPath{
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         case .insert:
-            print("Fiz um insert")
             if let newIndexPath = newIndexPath{
                 self.tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         case .move :
-            print("Fiz um move")
             if let indexPath = indexPath{
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }

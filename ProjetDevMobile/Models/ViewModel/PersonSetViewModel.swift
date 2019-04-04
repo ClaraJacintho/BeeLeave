@@ -53,7 +53,6 @@ class PersonSetViewModel{
     /// - Parameter person: Person to be added
     public func add(person: Person){
         if let indexPath = self.personsFetched.indexPath(forObject: person){
-            print("Adicionando pessoa!")
             self.delegate?.personAdded(at: indexPath)
         }
     }
@@ -77,10 +76,10 @@ class PersonSetViewModel{
     /// - Parameters:
     ///   - indexPath: (section,row) of Person we want to update the birth date
     ///   - date: birth date
-    public func updateBirthDate(atIndexPath indexPath: IndexPath, withDate date: Date){
-        let person = self.personsFetched.object(at: indexPath)
-        person.birthDate = date
-        self.delegate?.personUpdated(at: indexPath)
-    }
+//    public func updateBirthDate(atIndexPath indexPath: IndexPath, withDate date: Date){
+//        let person = self.personsFetched.object(at: indexPath)
+//        person.birthDate = date
+//        self.delegate?.personUpdated(at: indexPath)
+//    }
     
 }

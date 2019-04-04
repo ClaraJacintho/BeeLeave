@@ -42,4 +42,8 @@ class TripDAO {
         }
     }
     
+    static func delete(trip: Trip){
+        CoreDataManager.context.delete(trip)
+    }
+    
 }

@@ -53,17 +53,22 @@ class PersonTripDAO{
     static func getNextToPayByTrip(byTrip trip : Trip) -> Person? {
         self.request.predicate = NSPredicate(format: "hasTrip == %@", trip)
         var personTrip : [PersonTrip] = []
-        var max : Double = 0.0
+        var min : Double =  Double.greatestFiniteMagnitude
+        var paid : Double = 0.0
         var nextToPay : Person?
         do{
             personTrip = try CoreDataManager.context.fetch(self.request)
             for person in personTrip {
+                //Assuming the one that paid the least is the next one to pay
                 for expenses in (person.hasExpense!){
-                    if (((expenses as! Expense).pcost) >= max) {
-                        nextToPay = ((expenses as! Expense).paidBy?.hasPerson)!
-                        max = (expenses as! Expense).pcost
-                    }
+                    paid += (expenses as! Expense).pcost
                 }
+
+                if(paid < min){
+                    min = paid
+                    nextToPay = person.hasPerson
+                }
+                paid = 0
             }
             return nextToPay
         }
