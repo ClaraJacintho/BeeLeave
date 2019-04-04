@@ -46,12 +46,10 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
         if segue.identifier == "okNewExpense" {
             var cost : Double = 0.0
             if self.costValue.text?.isEmpty ?? true {
-                let alert = UIAlertController(title: "Error!", message: "Cost is empty!", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error!", message: "Value is empty!", preferredStyle: UIAlertController.Style.alert)
                 self.present(alert, animated: true, completion: nil)
                 return
             } else {
@@ -71,13 +69,12 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
             
             //self.personTrip =
             
-            //self.personTrip?.addExpense(person: whoPaid, cost: cost)
-            print(paidBy.hasTrip?.tripTitle)
-            print(paidBy.hasPerson?.fullName)
+//            //self.personTrip?.addExpense(person: whoPaid, cost: cost)
+//            print(paidBy.hasTrip?.tripTitle)
+//            print(paidBy.hasPerson?.fullName)
             
             self.expense = Expense(cost: cost, paidBy: paidBy)
             
-            NSLog("Expense adicionada")
             //personTrip?.addExpense(expense: self.expense!)
             
             //self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)

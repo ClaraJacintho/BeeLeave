@@ -21,10 +21,9 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
     var trip: Trip?
     var personTrip : PersonTrip?
     
-    var personTable: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
     
@@ -36,8 +35,13 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate {
             self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)
             self.personTrip = PersonTrip(person: self.newPerson!, trip: self.trip!)
             
-            self.newPerson?.didSave()
-            self.personTrip?.didSave()
+//            CoreDataManager.save()
+//            
+//            
+//            print("Algo mudou?")
+//            print(CoreDataManager.context.hasChanges)
+            
+            //CoreDataManager.context.refres
             
         }
         else{

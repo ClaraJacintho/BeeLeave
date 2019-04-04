@@ -8,25 +8,42 @@
 
 import UIKit
 
-class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, PersonTripViewModelDelegate {
+class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDelegate, PersonSetViewModelDelegate {
+    
+    func personDeleted(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func personUpdated(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    
+    func personAdded(at indexPath: IndexPath) {
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+    //PersonTripViewModelDelegate {
     
     
     var tableView   : UITableView
-    var personTripViewModel : PersonTripViewModel
-    let fetchResultController : PersonTripFetchResultController
+    //var personTripViewModel : PersonTripViewModel
+    var personViewModel : PersonSetViewModel
+    //let fetchResultController : PersonTripFetchResultController
+    let fetchResultController : PersonFetchResultController
        
     var personSelected : Person?
     
     init(tableView: UITableView, trip : Trip) {
         self.tableView        = tableView
-        self.fetchResultController = PersonTripFetchResultController(view : tableView, trip : trip)
+        self.fetchResultController = PersonFetchResultController(view : tableView, trip : trip)
         
-        self.personTripViewModel = PersonTripViewModel(data: self.fetchResultController.personsTripFetched)
+        //self.personTripViewModel = PersonTripViewModel(data: self.fetchResultController.personsFetched)
+        
+       self.personViewModel = PersonSetViewModel(data: self.fetchResultController.personsFetched)
         
         super.init()
         self.tableView.dataSource      = self
         self.tableView.delegate = self
-        self.personTripViewModel.delegate = self
+        self.personViewModel.delegate = self
         
         
     }
@@ -38,16 +55,13 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.personTripViewModel.count
+        //return self.personTripViewModel.count
+        return self.personViewModel.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCellId", for: indexPath)
-        guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
-        
-        //Show participant full name
-        //cell.textLabel?.text = person.fullName
-        //return cell
-        
+        //guard self.personTripViewModel.get(personTripAt: indexPath.row) != nil else { return cell }
+        guard self.personViewModel.get(personAt: indexPath.row) != nil else { return cell }
         return configure(cell: cell, atIndexPath: indexPath)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -58,7 +72,8 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            self.personSelected = self.personTripViewModel.get(personTripAt: indexPath.row)
+            //self.personSelected = self.personTripViewModel.get(personTripAt: indexPath.row)
+            self.personSelected = self.personViewModel.get(personAt: indexPath.row)
         }
     }
     
@@ -90,7 +105,8 @@ class PersonsTableViewController: NSObject, UITableViewDataSource, UITableViewDe
     // MARK: - convenience methods
     @discardableResult
     private func configure(cell: UITableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
-        guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
+ //       guard let person = self.personTripViewModel.get(personTripAt: indexPath.row) else { return cell }
+       guard let person = self.personViewModel.get(personAt: indexPath.row) else { return cell }
         
         //Show participant full name
         cell.textLabel?.text = person.fullName //+ (person.trip?.ttitle)!

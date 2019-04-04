@@ -30,6 +30,9 @@ class TripFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
         fetchResultController.delegate = self
+        
+        self.tableView.reloadData()
+        
         return fetchResultController
     }()
     

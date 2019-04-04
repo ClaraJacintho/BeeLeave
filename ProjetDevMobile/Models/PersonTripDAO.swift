@@ -63,9 +63,6 @@ class PersonTripDAO{
                         nextToPay = ((expenses as! Expense).paidBy?.hasPerson)!
                         max = (expenses as! Expense).pcost
                     }
-                    print("Entrou no segundo")
-                    NSLog(String((expenses as! Expense).pcost))
-                    NSLog(((expenses as! Expense).paidBy?.hasPerson?.fullName)!)
                 }
             }
             return nextToPay

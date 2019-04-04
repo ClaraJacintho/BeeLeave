@@ -37,8 +37,14 @@ class PersonSetViewModel{
     var personsFetched : NSFetchedResultsController<Person>
 
     init(data: NSFetchedResultsController<Person>){
+        do{
+            try data.performFetch()
+        } catch{
+            print("error!")
+        }
         self.personsFetched = data
     }
+    
 
     //-------------------------------------------------------------------------------------------------
     // MARK: View Model functions
@@ -46,7 +52,8 @@ class PersonSetViewModel{
     ///
     /// - Parameter person: Person to be added
     public func add(person: Person){
-        if var indexPath = self.personsFetched.indexPath(forObject: person){
+        if let indexPath = self.personsFetched.indexPath(forObject: person){
+            print("Adicionando pessoa!")
             self.delegate?.personAdded(at: indexPath)
         }
     }

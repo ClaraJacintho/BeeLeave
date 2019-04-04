@@ -38,21 +38,11 @@ class TripDetailViewController: UIViewController {
         //Populate expenses list
         self.expensesController = ExpensesTableViewController(tableView: expensesTable, trip: self.trip!)
         
-
-        for personTable in (self.trip!.person?.allObjects)! as! [PersonTrip] {
-            for expenses in (personTable.hasExpense!){
-                totalCostValue += (expenses as! Expense).pcost
-                print((expenses as! Expense).pcost)
-            }
-        }
-        
-        print("Nb participants")
-        print(self.trip?.person?.count)
+        totalCostValue = TripDAO.getSumExpenses(byTrip: self.trip!)
         
         //Update labels
         configLabels()
         
-
     }
     
     func configLabels() {
@@ -71,21 +61,14 @@ class TripDetailViewController: UIViewController {
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let destController = segue.destination as? NewExpenseViewController {
+            destController.trip = self.trip
+        }
+        
         if let destController = segue.destination as? NewPersonViewController {
             destController.trip = self.trip
-            destController.personTable = self.personTable
         }
         
         if let destController = segue.destination as? PersonDetailViewController {
@@ -93,45 +76,33 @@ class TripDetailViewController: UIViewController {
                 guard let indexPath = self.personTable.indexPath(for: cell) else{
                     return
                 }
-                    destController.person = self.personController.personTripViewModel.get(personTripAt: indexPath.row)
+                    destController.person = self.personController.personViewModel.get(personAt: indexPath.row)
                     destController.totalCost = self.totalCostValue
                     destController.totalParticipants = (self.trip?.person?.count)!
                 
                 }
         }
 
-        if let destController = segue.destination as? NewExpenseViewController {
-            NSLog("enviando pessoa para expense")
-            destController.trip = self.trip
-        }
+
     }
     
-    //Methodo que retorna de NewPersonViewController adicionando uma pessoa a viagem    
     @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
-        if let newPersonController = sender.source as? NewPersonViewController {
-            if let person : Person = newPersonController.newPerson {
-                print("-------------CHEGOU AQUI1 -----------------")
-                self.personController.personTripViewModel.add(tripPerson: person)
-                print("-------------CHEGOU AQUI111 -----------------")
-            }
-        }
+//        if let newPersonController = sender.source as? NewPersonViewController {
+//            if let person : Person = newPersonController.newPerson {
+//                print("-------------CHEGOU AQUI1 -----------------")
+////                self.personTable.reloadData()
+////                do{
+////                    try self.personController.fetchResultController.personsFetched.performFetch()
+////                }catch{
+////                    print("Erro!")
+////                }
+//
+//                //self.personController.personTripViewModel.add(tripPerson: person)
+//                self.personController.personViewModel.add(person: person)
+//                //self.personTable.reloadData()
+//                print("-------------CHEGOU AQUI111 -----------------")
+//            }
+//        }
     }
-
-
-      // if let newExpenseController = sender.source as? NewExpenseViewController {
-      //      if let newExpense : Expense = newExpenseController.expense {
-      //          self.expensesController.expenseViewModel.add(expense: newExpense)
-      //      }
-      //  }
-        
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        super.viewDidAppear(true)
-//        //fetchData
-//        //fetch_data()
-//        personTable.reloadData()
-//        expensesTable.reloadData()
-//    }
     
 }

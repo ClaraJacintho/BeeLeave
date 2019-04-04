@@ -232,7 +232,7 @@
                                 <rect key="frame" x="16" y="164" width="138" height="30"/>
                                 <state key="normal" title="Add new participant"/>
                                 <connections>
-                                    <segue destination="n9h-VH-4pl" kind="show" identifier="newPersonSegue" id="AZe-Jt-L78"/>
+                                    <segue destination="n9h-VH-4pl" kind="show" identifier="" id="AZe-Jt-L78"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-HP-98Q">
@@ -419,10 +419,10 @@
             </objects>
             <point key="canvasLocation" x="3319" y="-1182"/>
         </scene>
-        <!--Add person-->
+        <!--New Person View Controller-->
         <scene sceneID="3HR-cv-SjU">
             <objects>
-                <viewController title="Add person" id="n9h-VH-4pl" customClass="NewPersonViewController" customModule="ProjetDevMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n9h-VH-4pl" customClass="NewPersonViewController" customModule="ProjetDevMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zb6-UN-VVM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -71,7 +71,7 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         if image != nil {
             cell.tripImage?.image = image
         }
-        print("Testando")
+        
         cell.nbParticipants?.text = String(trip.person!.count)
         
         guard let nextToPay = PersonTripDAO.getNextToPayByTrip(byTrip: trip) else {

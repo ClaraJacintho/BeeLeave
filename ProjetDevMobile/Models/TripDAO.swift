@@ -22,6 +22,16 @@ class TripDAO {
         }
     }
     
+    static func getSumExpenses(byTrip trip : Trip) -> Double {
+        var totalCostValue : Double = 0.0
+        for personTable in (trip.person?.allObjects)! as! [PersonTrip] {
+            for expenses in (personTable.hasExpense!){
+                totalCostValue += (expenses as! Expense).pcost
+            }
+        }
+        return totalCostValue
+    }
+    
     static func getAllTrips() -> [Trip]{
         self.request.predicate = nil
         do{
