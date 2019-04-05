@@ -12,7 +12,7 @@ import UIKit
 import CoreData
 
 class CoreDataManager {
-    
+       
     /// context manager
     static let context : NSManagedObjectContext = {
         guard let appDelegate  = UIApplication.shared.delegate as? AppDelegate else {
@@ -21,6 +21,8 @@ class CoreDataManager {
         }
         return appDelegate.persistentContainer.viewContext
     }()
+    
+    
     
     /// return entity description from context
     ///

@@ -14,15 +14,15 @@ protocol ExpenseViewModelDelegate {
     // MARK: -
     /// called when set globally changes
     func dataSetChanged()
-    /// called when a Person-Trip relation is deleted from set
+    /// called when a expense is deleted from set
     ///
     /// - Parameter indexPath: (section,row) of deletion
     func expenseDeleted(at indexPath: IndexPath)
-    /// called when a Person-Trip relation is updated in set
+    /// called when a expense is updated in set
     ///
     /// - Parameter indexPath: (section, row) of updating
     func expenseUpdated(at indexPath: IndexPath)
-    /// called when a Person-Trip relation is added to set
+    /// called when a expense is added to set
     ///
     /// - Parameter indexPath: (section,row) of add
     func expenseAdded(at indexPath: IndexPath)

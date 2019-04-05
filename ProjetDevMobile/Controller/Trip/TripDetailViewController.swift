@@ -24,26 +24,30 @@ class TripDetailViewController: UIViewController {
     
     
     var trip : Trip?
-    var participants : [Person]?
     var personTrip : PersonTrip?
     var totalCostValue : Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Populate person list
-        self.personController = PersonsTableViewController(tableView: personTable, trip : self.trip!)
+        self.personController = PersonsTableViewController(tableView: self.personTable, trip : self.trip!)
         
         //Populate expenses list
-        self.expensesController = ExpensesTableViewController(tableView: expensesTable, trip: self.trip!)
+        self.expensesController = ExpensesTableViewController(tableView: self.expensesTable, trip: self.trip!)
         
-        totalCostValue = TripDAO.getSumExpenses(byTrip: self.trip!)
+        for personTable in (self.trip!.person?.allObjects)! as! [PersonTrip] {
+            for expenses in (personTable.hasExpense!){
+                totalCostValue += (expenses as! Expense).pcost
+            }
+        }
         
-        //Update labels
+        expensesTable.reloadData()
+        personTable.reloadData()
+    
         configLabels()
-        
     }
+
     
     func configLabels() {
         if let atrip = self.trip {
@@ -87,22 +91,25 @@ class TripDetailViewController: UIViewController {
     }
     
     @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
-//        if let newPersonController = sender.source as? NewPersonViewController {
-//            if let person : Person = newPersonController.newPerson {
-//                print("-------------CHEGOU AQUI1 -----------------")
-////                self.personTable.reloadData()
-////                do{
-////                    try self.personController.fetchResultController.personsFetched.performFetch()
-////                }catch{
-////                    print("Erro!")
-////                }
-//
-//                //self.personController.personTripViewModel.add(tripPerson: person)
-//                self.personController.personViewModel.add(person: person)
-//                //self.personTable.reloadData()
-//                print("-------------CHEGOU AQUI111 -----------------")
-//            }
-//        }
+
+        if let newPersonController = sender.source as? NewPersonViewController {
+            if let person : Person = newPersonController.newPerson {
+                
+                self.personController.personViewModel.add(person: person)
+                
+            }
+        }
+        
+        if let newExpenseController = sender.source as? NewExpenseViewController {
+            if let expense : Expense = newExpenseController.expense {
+                
+                self.expensesController.expenseViewModel.add(expense: expense)
+                
+            }
+        }
+        expensesTable.reloadData()
+        personTable.reloadData()
+        
     }
     
 }

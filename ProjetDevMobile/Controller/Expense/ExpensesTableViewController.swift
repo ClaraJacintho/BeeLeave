@@ -53,10 +53,22 @@ class ExpensesTableViewController : NSObject, UITableViewDataSource, UITableView
         guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return cell }
 
         //Show participant full name
-        cell.textLabel?.text = String(expense.cost) + " " + (expense.paidBy?.hasPerson?.fullName ?? "ERRO")
+        cell.textLabel?.text = String(expense.cost) + " " + (expense.paidBy?.hasPerson?.fullName ?? "Person Deleted")
         return cell
 
         //return configure(cell: cell, atIndexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            guard let expense = self.expenseViewModel.get(expenseAt: indexPath.row) else { return }
+            self.expenseFRC.delete(expense: expense)
+        }
     }
 
     //-------------------------------------------------------------------------------------------------

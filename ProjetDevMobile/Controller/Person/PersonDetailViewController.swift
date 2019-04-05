@@ -28,10 +28,6 @@ class PersonDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
-        //Populate expenses list
         self.expensesController = ExpensesTableViewController(tableView: tableView, person: self.person!)
         
         
@@ -60,12 +56,7 @@ class PersonDetailViewController: UIViewController {
                 bal =  owed - owes
             }
             
-            
-            
             self.balance?.text = String(bal)
-            
-            //self.lastnameLabel.resize
-            //self.presenter.birthDate(ofPerson: aperson)
             
         } else{
             self.nameLabel.text = ""
@@ -74,15 +65,4 @@ class PersonDetailViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

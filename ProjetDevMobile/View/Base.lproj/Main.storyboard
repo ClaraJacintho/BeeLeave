@@ -232,7 +232,7 @@
                                 <rect key="frame" x="16" y="185" width="138" height="30"/>
                                 <state key="normal" title="Add new participant"/>
                                 <connections>
-                                    <segue destination="n9h-VH-4pl" kind="show" identifier="" id="AZe-Jt-L78"/>
+                                    <segue destination="n9h-VH-4pl" kind="show" identifier="okNewPerson" id="AZe-Jt-L78"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-HP-98Q">
@@ -471,7 +471,7 @@
                                 <rect key="frame" x="120" y="577" width="138" height="30"/>
                                 <state key="normal" title="Add new participant"/>
                                 <connections>
-                                    <segue destination="KSl-kb-AfQ" kind="unwind" identifier="okNewPerson" unwindAction="unwindToTripDetailWithSender:" id="avB-90-JmX"/>
+                                    <segue destination="KSl-kb-AfQ" kind="unwind" identifier="okNewPerson" unwindAction="unwindToTripDetailWithSender:" id="Cq8-jG-sdC"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-pF-3ZH">

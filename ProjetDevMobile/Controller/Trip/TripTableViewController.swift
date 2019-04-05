@@ -64,16 +64,13 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return }
-            TripDAO.delete(trip: trip)
-            self.tripDeleted(at: indexPath) //??
+            self.fetchResultController.delete(trip: trip)
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "tripItemCell", for: indexPath) as? TripItemTableViewCell else { fatalError() }
-//        cell.textLabel?.text = ""
         guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
-//        cell.textLabel?.text = trip.ttitle
         cell.cityName?.text = trip.ttitle
         
         let formatter = DateFormatter()
@@ -98,16 +95,6 @@ class TripTableViewController: NSObject, UITableViewDataSource, UITableViewDeleg
     
     //-------------------------------------------------------------------------------------------------
     // MARK: - convenience methods
-    @discardableResult
-    private func configure(cell: TripItemTableViewCell, atIndexPath indexPath: IndexPath) -> UITableViewCell{
-//        guard let trip = self.tripViewModel.get(tripAt: indexPath.row) else { return cell }
-            cell.cityName?.text = "hello"
-        //        cell.cityName?.text = trip.ttitle
-//        cell.startsDate?.text = dateFormatter.string(from: trip.tstart!)
-//        cell.endsDate?.text = dateFormatter.string(from: trip.tend!)
-//        cell.nbParticipants?.text = "5"
-        return cell
-    }
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

@@ -18,15 +18,10 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-       // self.dummyController = DummyController(self.tableView)
+        
         self.tripController = TripTableViewController(tableView: self.tableView)
         
     }
-    
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -34,14 +29,15 @@ class TripsViewController: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let destController = segue.destination as? TripDetailViewController {
-            //if let cell = sender as? TripItemTableViewCell{
             if let cell = sender as? UITableViewCell{
                 guard let indexPath = self.tableView.indexPath(for: cell) else{
-                    print(":(")
                     return
                 }
                     //Coloca variável trip em TripDetailViewController
-                    destController.trip = self.tripController.tripViewModel.get(tripAt: indexPath.row)
+                guard let trip = self.tripController.tripViewModel.get(tripAt: indexPath.row) else {
+                    return
+                }
+                destController.trip = trip
                 }
         }
         
@@ -52,21 +48,11 @@ class TripsViewController: UIViewController {
             if let newTrip : Trip = newTripController.newTrip {
                     self.tripController.tripViewModel.add(trip: newTrip)
             }
-        }
+        }       
     }
-    
-//    @IBAction func unwindToTripDetail(sender: UIStoryboardSegue) {
-//        if let newPersonController = sender.source as? NewPersonViewController {
-//            if let person : Person = newPersonController.newPerson {
-//                self.personController.personTripViewModel.add(tripPerson: person)
-//            }
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //fetchData
-        //fetch_data()
         tableView.reloadData()
     }
  

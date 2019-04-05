@@ -11,18 +11,12 @@ import UIKit
 
 extension Trip {
     
-    //public var firstName : String { return self.pfirstName ?? "" }
     public var tripTitle : String { return self.ttitle ?? ""}
     public var tripStart : Date { return self.tstart ?? Date()}
     public var tripEnd : Date { return self.tend ?? Date()}
     public var tripPhoto : NSData {
         return self.tphoto! as NSData
     }
-    
-    public var participant : [PersonTrip]? {
-        return self.person as! [PersonTrip]? ?? []
-    }
-    //public var photo :
     
     convenience init(title: String, start: Date, end : Date){
         self.init(context: CoreDataManager.context)
@@ -39,13 +33,8 @@ extension Trip {
         self.tphoto = photo as Data
     }
     
-//    var person: ExpensePersonSet{
-//        let creanceList = ExpensePersonDAO.getExpensesPersonByPerson(person: self)
-//        let result = ExpensePersonSet()
-//        for creance in creanceList{
-//            result.add(expensePerson: creance)
-//        }
-//        return result
-//    }
+    func addPersonTrip(personTrip : PersonTrip){
+        self.person?.adding(personTrip)
+    }
 
 }

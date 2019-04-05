@@ -23,9 +23,9 @@ extension Person{
         set{ self.parrivaldate = newValue }
     }
     
-    public var pphoto : NSData {
-        return self.photo! as NSData
-    }
+//    public var pphoto : NSData {
+//        return self.photo! as NSData
+//    }
     /// initialize a `Person`
     ///
     /// - Parameters:
@@ -58,6 +58,34 @@ extension Person{
         self.arrivalDate = arrivalDate
         //self.photo = photo as Data
         //self.trip = trip
+    }
+    
+    convenience init(firstName: String, lastName: String, arrivalDate: Date, personTrip : PersonTrip){
+        self.init(context: CoreDataManager.context)
+        self.pfirstName = firstName
+        self.plastName  = lastName
+        //self.pbirthDate = nil
+        self.arrivalDate = arrivalDate
+        self.trip?.adding(personTrip)
+        //self.photo = photo as Data
+        //self.trip = trip
+    }
+    
+    func addPersonTrip(personTrip : PersonTrip) {
+        self.trip?.adding(personTrip)
+    }
+    
+    func save() {
+        print("Salvando nova pessoa")
+        if CoreDataManager.context.hasChanges {
+            print("pois mudou algo")
+            do {
+                try CoreDataManager.context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 
 }

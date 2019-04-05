@@ -35,27 +35,12 @@ class NewPersonViewController: UIViewController, UITextFieldDelegate, UINavigati
             let lastname  : String  = self.lastnameTextField.text!
             let arrivalDate : Date    = self.arrivalDate.date
             
-//            guard let imgData = self.imageView.image?.jpegData(compressionQuality: 1) else {
-//                print("jpg error")
-//                //TODO
-//                //Alert
-//                return
-//            }
-            
             self.newPerson = Person(firstName: firstname, lastName: lastname, arrivalDate: arrivalDate)
+            
             self.personTrip = PersonTrip(person: self.newPerson!, trip: self.trip!)
-            
-//            CoreDataManager.save()
-//            
-//            
-//            print("Algo mudou?")
-//            print(CoreDataManager.context.hasChanges)
-            
-            //CoreDataManager.context.refres
-            
         }
         else{
-            self.newPerson = nil
+            self.personTrip = nil
         }
     }
     

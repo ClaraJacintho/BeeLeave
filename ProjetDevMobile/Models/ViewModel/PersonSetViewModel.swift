@@ -27,21 +27,14 @@ protocol PersonSetViewModelDelegate {
     /// - Parameter indexPath: (section,row) of add
     func personAdded(at indexPath: IndexPath)
 }
-//----------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------
+
 // MARK: -
 class PersonSetViewModel{
-    // MARK: -
-    
+// MARK: -
     var delegate : PersonSetViewModelDelegate? = nil
     var personsFetched : NSFetchedResultsController<Person>
 
     init(data: NSFetchedResultsController<Person>){
-        do{
-            try data.performFetch()
-        } catch{
-            print("error!")
-        }
         self.personsFetched = data
     }
     
@@ -70,16 +63,5 @@ class PersonSetViewModel{
     public func get(personAt index: Int) -> Person?{
         return self.personsFetched.object(at: IndexPath(row: index, section: 0))
     }
-    
-    /// update birth date of Person
-    ///
-    /// - Parameters:
-    ///   - indexPath: (section,row) of Person we want to update the birth date
-    ///   - date: birth date
-//    public func updateBirthDate(atIndexPath indexPath: IndexPath, withDate date: Date){
-//        let person = self.personsFetched.object(at: indexPath)
-//        person.birthDate = date
-//        self.delegate?.personUpdated(at: indexPath)
-//    }
     
 }

@@ -31,8 +31,6 @@ class TripFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
         fetchResultController.delegate = self
         
-        self.tableView.reloadData()
-        
         return fetchResultController
     }()
     
@@ -58,9 +56,25 @@ class TripFetchResultController: NSObject, NSFetchedResultsControllerDelegate{
         case .update:
             if let indexPath = indexPath{
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            } default:
+            }
+        default:
             break
+            
         }
+    }
+    
+    func delete(trip: Trip){
+        CoreDataManager.context.delete(trip)
+    }
+    
+    func getSumExpenses(byTrip trip : Trip) -> Double {
+        var totalCostValue : Double = 0.0
+        for personTable in (trip.person?.allObjects)! as! [PersonTrip] {
+            for expenses in (personTable.hasExpense!){
+                totalCostValue += (expenses as! Expense).pcost
+            }
+        }
+        return totalCostValue
     }
 }
 

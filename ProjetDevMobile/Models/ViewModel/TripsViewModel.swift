@@ -46,10 +46,8 @@ class TripsViewModel{
         return self.tripsFetched!.object(at: IndexPath(row: index, section: 0))
     }
     
-    public func updadateAddPerson(atIndexPath indexPath: IndexPath, withPerson person: Person){
-        //let person = self.personsFetched.object(at: indexPath)
-        let trip = self.tripsFetched!.object(at: indexPath)
-        //trip.participants?.adding(person)
+    public func upddateAddPerson(atIndexPath indexPath: IndexPath, withPerson person: Person){
+        _ = self.tripsFetched!.object(at: indexPath)
         self.delegate?.tripUpdated(at: indexPath)
     }
     

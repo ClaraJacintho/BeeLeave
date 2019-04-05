@@ -73,10 +73,6 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
             CoreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
         
        
-       
-        //let personTest : PersonTrip = fetchResultController1.object(at: IndexPath(row: 0, section: 0))
-
-        
         fetchResultController.delegate = self
         
         return fetchResultController
@@ -94,6 +90,7 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at
         indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath{
@@ -109,5 +106,9 @@ class ExpenseFetchResultController: NSObject, NSFetchedResultsControllerDelegate
             } default:
             break
         }
+    }
+    
+    func delete(expense: Expense){
+        CoreDataManager.context.delete(expense)
     }
 }

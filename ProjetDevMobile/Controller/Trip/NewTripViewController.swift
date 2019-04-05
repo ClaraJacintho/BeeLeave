@@ -77,18 +77,14 @@ class NewTripViewController: UIViewController, UITextFieldDelegate, UINavigation
                 fatalError()
             }
             
-            
             guard let imgData = self.imageView.image?.jpegData(compressionQuality: 1) else {
-                print("jpg error")
-                //TODO
-                //Alert
+                let alert = UIAlertController(title: "Error!", message: "Select one image!", preferredStyle: UIAlertController.Style.alert)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
-                       
+        
             self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
             
-            //TODO
-            //self.newPersonTrip = PersonTrip(trip: self.newTrip!)
         }
         else{
             self.newTrip = nil

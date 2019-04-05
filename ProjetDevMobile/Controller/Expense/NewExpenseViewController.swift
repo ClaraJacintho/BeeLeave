@@ -28,10 +28,6 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
         
         self.personExpensesTable = PersonsTableViewController(tableView: tableView, trip : self.trip!)
         
-        //self.expensesTable = ExpensesTableViewController()
-        //self.tableView = personTable
-        //self.tableView.allowsMultipleSelection = true
-        // Do any additional setup after loading the view.
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -43,7 +39,6 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
 
     
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "okNewExpense" {
@@ -66,21 +61,11 @@ class NewExpenseViewController: UIViewController, UITextFieldDelegate {
         
             let paidBy : PersonTrip = PersonTrip.search(forPerson: whoPaid, trip: self.trip!)
             
-            
-            //self.personTrip =
-            
-//            //self.personTrip?.addExpense(person: whoPaid, cost: cost)
-//            print(paidBy.hasTrip?.tripTitle)
-//            print(paidBy.hasPerson?.fullName)
-            
             self.expense = Expense(cost: cost, paidBy: paidBy)
             
-            //personTrip?.addExpense(expense: self.expense!)
-            
-            //self.newTrip = Trip(title: title, start: start, end: end, photo: imgData as NSData)
         }
         else{
-            self.personTrip = nil
+            self.expense = nil
         }
     }
  
